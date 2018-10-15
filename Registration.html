@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
     <h1>Join Our Community</h1>
@@ -38,6 +38,9 @@
         <b>Address Line 2</b>
         <input type="text" id="address2"/> <br>
         
+        <b>Zip Code </b>
+        <input type="text" id="zipCode"/> <br>
+
         <b>City *</b>
         <input type="text" id="city"/> <br>
         
@@ -53,11 +56,12 @@
         <input type="checkbox" id="chxNewsletter"/> 
         Sign me up for the newsletter <br>
 
-        <!-- Add NoCAPTCHA here -->
-        
+        <div class="g-recaptcha" data-sitekey="6LeOJ3UUAAAAAND-EUT6sTJpyTFcvtqpWuvkhBw6"></div>
         <input type="button" value="Sign Up" id="btnSignUp" onclick="signUpButton()"/>
     </p>
 
     <script src="./js/models/User.js"></script>
+    <script src="./js/models/Address.js"></script>
+    <script src="./js/UserOperations.js"></script>
 </body>
 </html>
