@@ -5,8 +5,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    
 </head>
 <body>
-    
+    <h1>Join Our Community</h1>
+
+    <p>
+        <b>First Name *</b>
+        <input type="text" id="firstName"/> <br>
+        
+        <b>Last Name *</b>
+        <input type="text" id="lastName"/> <br>
+        
+        <b>E-mail *</b>
+        <input type="email" id="email"/> <br>
+        
+        <b>Date of Birth *</b>
+        <input type="date" id="dob"/> <br>
+        
+        <b>Phone Number *</b>
+        <input type="text" id="phoneNo"/> <br>
+        
+        <b>Password *</b>
+        <input type="password" id="password"/> <br>
+        
+        <b>Repeat Password *</b>
+        <input type="password" id="rptPassword"/> <br>
+        
+        <b>Address Line 1</b>
+        <input type="text" id="address1"/> <br>
+        
+        <b>Address Line 2</b>
+        <input type="text" id="address2"/> <br>
+        
+        <b>City *</b>
+        <input type="text" id="city"/> <br>
+        
+        <b>Region</b>
+        <input type="text" id="region"/> <br>
+        
+        <b>Country *</b>
+        <input type="text" id="country"/> <br>
+        
+        <input type="checkbox" id="chxSignUpAgr"/> 
+        I agree with everything! <br>
+
+        <input type="checkbox" id="chxNewsletter"/> 
+        Sign me up for the newsletter <br>
+
+        <!-- Add NoCAPTCHA here -->
+        
+        <input type="button" value="Sign Up" id="btnSignUp" onclick="signUpButton()"/>
+    </p>
+
+    <script src="./js/models/User.js"></script>
 </body>
 </html>
