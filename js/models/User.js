@@ -1,6 +1,6 @@
 class User{
     constructor(firstname, lastname, email,
-                dob, phoneNo, password, homeAddress){
+                dob, phoneNo, password, homeAddress, newsletter){
         this._firstname = firstname;
         this._lastname = lastname;
         this._email = email;
@@ -8,6 +8,7 @@ class User{
         this._phoneNo = phoneNo;
         this._password = password;
         this._homeAddress = homeAddress;
+        this._newsletter = newsletter;
     }
 
     //Getter and Setter
@@ -65,5 +66,13 @@ class User{
 
     set homeAddress(value) {
         this._homeAddress = value;
+    }
+
+    get newsletter() {
+        return this._newsletter;
+    }
+
+    set newsletter(value) {
+        this._newsletter = value;
     }
 }
