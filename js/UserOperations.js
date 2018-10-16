@@ -24,14 +24,14 @@ function signUpButton() {
     if (document.getElementById("chxSignUpAgr").checked === false){
         alert("You did not agree with everything");
     }
-    else if (requiredField(requiredFields) === false || validateEmail() == false || validateDob() == false || validatePhoneNo() == false ||
-        validatePW() == false || matchPW() == false) { 
+    else if (requiredField(requiredFields) === false || validateEmail() === false || validateDob() === false || validatePhoneNo() === false ||
+        validatePW() === false || matchPW() === false) {
             alert("Something got wrong")
     }
-    else if (document.getElementById("g-recaptcha-response").value == "") {
+    else if (document.getElementById("g-recaptcha-response").value === "") {
         alert("Please, tick ReCAPTCHA checkbox")
     }
-    else if (uniqueEmail(requiredFields[2].value) == false) {
+    else if (uniqueEmail(requiredFields[2].value) === false) {
         alert("The email address is already used")
     }
     else{
@@ -130,11 +130,11 @@ function validateDob() {
 //Check if the email address is already in the system. Parameter email
 //Return value is boolean
 function uniqueEmail(email) {
-    if (userData.length == 0) {
+    if (userData.length === 0) {
         return true;
     }
     for(var i = 0; i < userData.length; i++) {
-        if (userData[i].email == email) {
+        if (userData[i].email === email) {
             return false;
         }
     }
