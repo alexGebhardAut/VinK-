@@ -127,7 +127,7 @@ function validateDob() {
     }
 }
 
-//Check if the email address is already in the system. Param email
+//Check if the email address is already in the system. Parameter email
 //Return value is boolean
 function uniqueEmail(email) {
     if (userData.length == 0) {
