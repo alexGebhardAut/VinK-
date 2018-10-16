@@ -46,8 +46,46 @@ function signUpButton() {
 //Validate if it is an email address
 function validateEmail() {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (re.test(String(document.getElementById("email").value).toLowerCase()) === false) {
-        document.getElementById("emailInfo").innerHTML = "This is not a valid email address"
-    }
-    else document.getElementById("emailInfo").innerHTML = "";
+    if (re.test(String(document.getElementById("email").value).toLowerCase()) === false) 
+        document.getElementById("infoEmail").innerHTML = "This is not a valid email address"
+    else 
+        document.getElementById("infoEmail").innerHTML = "";
 }
+
+//Validate if password fullfils criteria
+function validatePW() {
+    var password = document.getElementById("password").value;
+    if (password.length < 8) 
+        document.getElementById("infoPW").innerHTML = "Password must be at least 8 characters long";
+    else 
+        document.getElementById("infoPW").innerHTML = "";
+}
+
+//Validate if both password inputs are equal
+function matchPW() {
+    var password = document.getElementById("password").value;
+    var passwordRpt = document.getElementById("rptPassword").value;
+    if(passwordRpt === "")
+        document.getElementById("infoRptPW").innerHTML = "";
+    else if (password !== passwordRpt) 
+        document.getElementById("infoRptPW").innerHTML = "Passwords are not equal";
+    else
+        document.getElementById("infoRptPW").innerHTML = "";
+}
+
+function validatePhoneNo() {
+    var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    if (re.test(document.getElementById("phoneNo").value) === false)
+        document.getElementById("infoPhoneNo").innerHTML = "This is not a valid phone number"
+    else 
+        document.getElementById("infoPhoneNo").innerHTML = ""
+}
+
+function validateDob() {
+    var selectedDate = new Date(document.getElementById('dob').value);
+    var now = new Date();
+    if (selectedDate > now) 
+        document.getElementById("infoDob").innerHTML = "Date must be in the past";
+    else    
+    document.getElementById("infoDob").innerHTML = "";
+  }

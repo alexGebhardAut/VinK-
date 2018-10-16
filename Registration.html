@@ -18,19 +18,19 @@
         <input type="text" id="lastName"/> <br>
         
         <b>E-mail *</b>
-        <input type="email" id="email" onchange = "validateEmail()"/><span id = "emailInfo"></span><br>
+        <input type="email" id="email" onchange = "validateEmail()"/><span id = "infoEmail"></span><br>
         
         <b>Date of Birth *</b>
-        <input type="date" id="dob"/> <br>
+        <input type="date" id="dob" onchange="validateDob()"/><span id = "infoDob"></span><br>
         
         <b>Phone Number *</b>
-        <input type="text" id="phoneNo"/> <br>
+        <input type="text" id="phoneNo" onchange="validatePhoneNo()"/><span id = "infoPhoneNo"></span><br>
         
         <b>Password *</b>
-        <input type="password" id="password"/> <br>
+        <input type="password" id="password" onchange="validatePW();matchPW()"/><span id = "infoPW"></span><br>
         
         <b>Repeat Password *</b>
-        <input type="password" id="rptPassword"/> <br>
+        <input type="password" id="rptPassword" onchange="matchPW()"/><span id = "infoRptPW"></span><br>
         
         <b>Address Line 1</b>
         <input type="text" id="address1"/> <br>
