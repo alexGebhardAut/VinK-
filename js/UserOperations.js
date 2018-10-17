@@ -1,7 +1,8 @@
+// Create an empty array userData that stores all the properties of the users
 var userData = [];
 
-//Check if all required fields are filled out
-//Returned value type is Boolean
+// The website should check if all the required fields are filled out
+// The returned value type is Boolean
 function requiredField(fieldsArray) {
     for(var i = 0; i < fieldsArray.length; i++) {
         if (fieldsArray[i].value === "") return false;
@@ -9,6 +10,7 @@ function requiredField(fieldsArray) {
     return true;
 }
 
+// This function should make sure that certain fields in the form are required to be filled out 
 function signUpButton() {
     var requiredFields = [];
     requiredFields.push(document.getElementById("firstName"));
@@ -21,19 +23,36 @@ function signUpButton() {
     requiredFields.push(document.getElementById("city"));
     requiredFields.push(document.getElementById("country"));
 
+// The user has to agree with all the T&Cs to continue to sign up
     if (document.getElementById("chxSignUpAgr").checked === false){
         alert("You did not agree with everything");
     }
-    else if (requiredField(requiredFields) === false || validateEmail() === false || validateDob() === false || validatePhoneNo() === false ||
-        validatePW() === false || matchPW() === false) {
-            alert("Something got wrong")
+
+/* When signing up, the website should check if all the required fields are filled out, 
+    and if the email, DOB, phone number, password, and repeat password meet our requirements */ 
+    else if (requiredField(requiredFields) === false || 
+                validateEmail() === false || 
+                validateDob() === false || 
+                validatePhoneNo() === false ||
+                validatePW() === false || 
+                matchPW() === false) {
+        alert("Something got wrong")
     }
-    else if (document.getElementById("g-recaptcha-response").value === "") {
+
+// Users should check the Google ReCAPTCHA box before signing up to validate that they're real users  
+    else if (document.getElementById("g-recaptcha-response").value.length === 0) {
         alert("Please, tick ReCAPTCHA checkbox")
     }
+
+// This should check if the email is already in use or not by calling the uniqueEmail function 
     else if (uniqueEmail(requiredFields[2].value) === false) {
         alert("The email address is already used")
     }
+
+/* If everything is correctly filled out, a new user will be created 
+    The user's information includes the object address
+    The news letter box can be checked or not (boolean) depending on the user's preference
+*/ 
     else{
         var user = new User(requiredFields[0].value,
                             requiredFields[1].value,
@@ -50,26 +69,24 @@ function signUpButton() {
                             document.getElementById("chxNewsletter").checked
             );
 
+// A new variable user is created and is pushed into the array userData 
         userData.push(user);
-        console.log(userData);
         alert("Congratulations, you have become a member!")
     }
 }
 
-//Validate if it is an email address
+// Validate if the provided email address is a valid email address
 function validateEmail() {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(String(document.getElementById("email").value).toLowerCase()) === false) {
         document.getElementById("infoEmail").innerHTML = "This is not a valid email address"
         return false;
     }
-    else {
-        document.getElementById("infoEmail").innerHTML = "";
-        return true;
-    }
+    document.getElementById("infoEmail").innerHTML = "";
+    return true;
 }
 
-//Validate if password fullfils criteria
+// Validate if password fullfils criteria of minimum 8 characters long 
 function validatePW() {
     var password = document.getElementById("password").value;
     if (password.length < 8) {
@@ -82,11 +99,11 @@ function validatePW() {
     }
 }
 
-//Validate if both password inputs are equal
+// Validate if both password inputs are equal
 function matchPW() {
     var password = document.getElementById("password").value;
     var passwordRpt = document.getElementById("rptPassword").value;
-    if(passwordRpt === "") {
+    if(passwordRpt.length === 0) {
         document.getElementById("infoRptPW").innerHTML = "";
         return false;
     }
@@ -100,7 +117,7 @@ function matchPW() {
     }
 }
 
-//Validate if a phone number is valid (works only with country codes)
+// Validate if a phone number is valid (works only with the country code included in the format)
 function validatePhoneNo() {
     var re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
     if (re.test(document.getElementById("phoneNo").value) === false) {
@@ -113,7 +130,7 @@ function validatePhoneNo() {
     }
 }
 
-//Validate if date of birth is in the past
+// Validate if the date of birth is in the past
 function validateDob() {
     var selectedDate = new Date(document.getElementById('dob').value);
     var now = new Date();
@@ -127,8 +144,9 @@ function validateDob() {
     }
 }
 
-//Check if the email address is already in the system. Parameter email
-//Return value is boolean
+/* Check if the email address is already stored in our system. 
+    Parameter email
+    Return value is boolean */
 function uniqueEmail(email) {
     if (userData.length === 0) {
         return true;
@@ -139,5 +157,4 @@ function uniqueEmail(email) {
         }
     }
     return true;
-
 }
