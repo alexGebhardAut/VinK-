@@ -159,6 +159,7 @@ function uniqueEmail(email) {
     return true;
 }
 
+// The next functions enable the user to see his written password in text and change it back to the bullet notation
 function showPwFuncDown() {
     document.getElementById('password').type = "text";
 }
@@ -167,12 +168,21 @@ function showPwFuncUp() {
     document.getElementById('password').type = "password";
 }
 
+/*  The login button has the following functions:
+        First, we check if the email and password fields are filled out
+        Then we check if the given email address is already stored in our system
+            If we did not find an email address, "the given user is not registered" will be displayed
+            If we find a stored email address, we check the corresponding password 
+        If the password matches the corresponding account, the login is correct
+        If the password is incorrect, the message "something went wrong" will be displayed
+    All the outputs are displayed in the form of an alert  
+*/ 
 function loginButton() {
     var output;
     var fields = [document.getElementById("email").value, document.getElementById("password").value];
 
     if (requiredField(fields) === false)
-        output = "Please fill out login and password";
+        output = "Please fill out your email address and password";
     else {
         var tempPos = -1;
         for (var i = 0; i < userData.length; i++) {
@@ -180,7 +190,7 @@ function loginButton() {
                 if (fields[1] === userData[i].password) {
                     output = "login correct"; tempPos = i; break;
                 } else {
-                    output = "Something got wrong"; tempPos = i; break;
+                    output = "Something went wrong"; tempPos = i; break;
                 }
             }
         }
