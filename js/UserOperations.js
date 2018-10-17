@@ -51,8 +51,7 @@ function signUpButton() {
 
 /* If everything is correctly filled out, a new user will be created
     The user's information includes the object address
-    The news letter box can be checked or not (boolean) depending on the user's preference
-*/
+    The news letter box can be checked or not (boolean) depending on the user's preference */
     else{
         var user = new User(requiredFields[0].value,
                             requiredFields[1].value,
@@ -175,8 +174,7 @@ function showPwFuncUp() {
             If we find a stored email address, we check the corresponding password 
         If the password matches the corresponding account, the login is correct
         If the password is incorrect, the message "something went wrong" will be displayed
-    All the outputs are displayed in the form of an alert  
-*/ 
+    All the outputs are displayed in the form of an alert */ 
 function loginButton() {
     var output;
     var fields = [document.getElementById("email").value, document.getElementById("password").value];
