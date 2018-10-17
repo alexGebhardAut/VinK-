@@ -17,7 +17,7 @@
         <br>
 
         <b>Date and Time</b>
-        <input type="datetime" id="datetime" onchange="validateDatetime()"/> <br>
+        <input type="date" id="datetime" onchange="validateDatetime()"/><span id="datetimeInfo"></span> <br>
 
         <br>
 
@@ -43,10 +43,13 @@
 
         <br>
 
-        <input type="button" value="Schedule My Appointment!" id="btnSchedule"/>
+        <input type="button" value="Schedule My Appointment!" id="btnSchedule" onclick="createAppointmentBtn()"/>
 
     </p>
-
-
+    <script src="./js/models/User.js"></script>
+    <script src="./js/models/Address.js"></script>
+    <script src="./js/models/Appointment.js"></script>
+    <script src="./js/UserOperations.js"></script>
+    <script src="./js/CreateAppointment.js"></script>
 </body>
 </html>
