@@ -1,0 +1,7 @@
+.incorrect-validation{
+    color: red;
+}
+
+.errorValidation{
+    border: 1px solid red;
+}
