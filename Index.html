@@ -1,13 +1,99 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vinko - Home</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/SupportingMethods.css">
 </head>
 <body>
     <h1>Landing page of Vinko</h1>
 
-    <a href="Login.html">Login</a><br>
-    <a href="Registration.html">Sign up</a>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModelLogin">
+        Login
+    </button><br>
+    <a href="Registration.html">Sign up</a><br>
+
+    <div class="mapouter">
+        <div class="gmap_canvas">
+            <iframe width="522" height="378" id="gmap_canvas" src="https://maps.google.com/maps?q=Emdrupvej%2024&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+            </iframe>
+            <a href="https://www.pureblack.de">pureblack.de</a>
+        </div>
+        <style>.mapouter{text-align:right;height:378px;width:522px;}.gmap_canvas {overflow:hidden;background:none!important;height:378px;width:522px;}</style>
+    </div>
+    <br>
+    <h3>Opening hours</h3>
+    <table>
+        <tr>
+            <td>Sunday</td><td>	10AM–9PM</td>
+        </tr>
+        <tr>
+            <td>Monday</td><td>	10AM–9PM</td>
+        </tr>
+        <tr>
+            <td>Tuesday</td><td>10AM–9PM</td>
+        </tr>
+        <tr>
+            <td>Wednesday</td><td>10AM–9PM</td>
+        </tr>
+        <tr>
+            <td>Thursday</td><td>10AM–9PM</td>
+        </tr>
+        <tr>
+            <td>Friday</td><td>	10AM–9PM</td>
+        </tr>
+        <tr>
+            <td>Saturday</td><td>10AM–9PM</td>
+        </tr>
+    </table>
+    <!-- Modal -->
+    <div class="modal fade" id="alertModelLogin" tabindex="-1" role="dialog" aria-labelledby="alertModalLoginLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLoginLabel"><b>Login</b></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="alertModelBodyLogin" class="modal-body">
+                    <!-- Email -->
+                    <label for="email"><b>Email</b></label>
+                    <input class="form-control" type="text" id="email"/><br>
+
+                    <!-- Password -->
+                    <label for="password"><b>Password</b></label>
+                    <div class='input-group'>
+                        <input class="form-control" type="password" id="password"/>
+                        <span class="input-group-addon" id="showPw" onmousedown="showPwFuncDown()" onmouseup="showPwFuncUp()">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </span>
+                    </div>
+
+                    <!-- Remember me checkbox -->
+                    <label for="rememberme">Remember me?</label>
+                    <input type="checkbox" id="rememberme" checked/><br>
+
+                    <!-- Forgot my password link -->
+                    <a href="#" id="linkForgotPw">Forgot my password</a><br>
+                    <div id="loginMessage" align="center"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnLogin" onclick="loginButton()">Login</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/models/User.js"></script>
+    <script src="./js/models/Address.js"></script>
+    <script src="./js/SupportingMethods.js"></script>
+    <script src="./js/UserOperations.js"></script>
 </body>
 </html>

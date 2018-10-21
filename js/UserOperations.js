@@ -1,5 +1,12 @@
 // Create an empty array userData that stores all the properties of the users
-var userData = [];
+var userData = [
+    new User("Alexander","Gebhard","alexander.gebhard@sbg.at","21/03/1993","+436641279352","alexander",
+        new Address("Emdrupvej 24","1., 2.", "Copenhagen", "Osterbro", "2100", "Denmark"),
+        false),
+    new User("Jakub", "Wejskrab", "j.wejski@me.com", "22/02/1996", "+4550180070", "emdrupvej",
+        new Address("Emdrupvej 24", "1., 2.", "Copenhagen", "Osterbro", "2100", "Denmark"),
+        false)
+];
 
 // This function should make sure that certain fields in the form are required to be filled out
 function signUpButton() {
@@ -16,7 +23,7 @@ function signUpButton() {
 
 // The user has to agree with all the T&Cs to continue to sign up
     if (document.getElementById("chxSignUpAgr").checked === false){
-        alert("You did not agree with everything");
+        callDialog("You did not agree with everything");
     }
 
 /* When signing up, the website should check if all the required fields are filled out,
@@ -27,17 +34,17 @@ function signUpButton() {
                 validatePhoneNo() === false ||
                 validatePW() === false ||
                 matchPW() === false) {
-        alert("Something got wrong")
+        callDialog("Something got wrong")
     }
 
 // Users should check the Google ReCAPTCHA box before signing up to validate that they're real users
     else if (document.getElementById("g-recaptcha-response").value.length === 0) {
-        alert("Please, tick ReCAPTCHA checkbox")
+        callDialog("Please, tick ReCAPTCHA checkbox")
     }
 
 // This should check if the email is already in use or not by calling the uniqueEmail function
     else if (uniqueEmail(requiredFields[2].value) === false) {
-        alert("The email address is already used")
+        callDialog("The email address is already used")
     }
 
 /* If everything is correctly filled out, a new user will be created
@@ -61,7 +68,7 @@ function signUpButton() {
 
 // A new variable user is created and is pushed into the array userData
         userData.push(user);
-        alert("Congratulations, you have become a member!")
+        callDialog("Congratulations, you have become a member!")
     }
 }
 
@@ -74,6 +81,21 @@ function showPwFuncUp() {
     document.getElementById('password').type = "password";
 }
 
+/* Check if the email address is already stored in our system.
+    Parameter email
+    Return value is boolean */
+function uniqueEmail(email) {
+    if (userData.length === 0) {
+        return true;
+    }
+    for(var i = 0; i < userData.length; i++) {
+        if (userData[i].email === email) {
+            return false;
+        }
+    }
+    return true;
+}
+
 /*  The login button has the following functions:
         First, we check if the email and password fields are filled out
         Then we check if the given email address is already stored in our system
@@ -84,15 +106,15 @@ function showPwFuncUp() {
     All the outputs are displayed in the form of an alert */ 
 function loginButton() {
     var output;
-    var fields = [document.getElementById("email").value, document.getElementById("password").value];
-
+    var fields = [document.getElementById("email"), document.getElementById("password")];
+    console.log(fields);
     if (requiredField(fields) === false)
         output = "Please fill out your email address and password";
     else {
         var tempPos = -1;
         for (var i = 0; i < userData.length; i++) {
-            if (fields[0] === userData[i].email) {
-                if (fields[1] === userData[i].password) {
+            if (fields[0].value === userData[i].email) {
+                if (fields[1].value === userData[i].password) {
                     output = "login correct"; tempPos = i; break;
                 } else {
                     output = "Something went wrong"; tempPos = i; break;
@@ -104,5 +126,16 @@ function loginButton() {
             output = "The given user is not registered";
         }
     }
-    alert(output);
+    if(output !== "login correct") {
+        document.getElementById("loginMessage").innerHTML = output;
+    }else {
+        localStorage.setItem("user", JSON.stringify(userData[tempPos]));
+        window.location.href = "/VinKo/ScheduleAppointment.html";
+    }
+}
+
+function logout(){
+    localStorage.removeItem("user");
+    localStorage.clear();
+    window.location.href = "/VinKo/Index.html";
 }

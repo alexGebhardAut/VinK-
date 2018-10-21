@@ -2,7 +2,7 @@
 // The returned value type is Boolean
 function requiredField(fieldsArray) {
     for(var i = 0; i < fieldsArray.length; i++) {
-        if (fieldsArray[i].value === "") return false;
+        if (fieldsArray[i].value.length === 0) return false;
     }
     return true;
 }
@@ -94,17 +94,8 @@ function removeErrorValClass(actualClassName){
     return actualClassName;
 }
 
-/* Check if the email address is already stored in our system.
-    Parameter email
-    Return value is boolean */
-function uniqueEmail(email) {
-    if (userData.length === 0) {
-        return true;
-    }
-    for(var i = 0; i < userData.length; i++) {
-        if (userData[i].email === email) {
-            return false;
-        }
-    }
-    return true;
+function callDialog(message){
+    console.log(message === null);
+    document.getElementById("alertModelBodyRegistration").innerHTML = message;
+    $('#alertModel').modal();
 }

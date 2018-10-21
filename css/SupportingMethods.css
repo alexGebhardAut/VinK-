@@ -1,4 +1,5 @@
-.incorrect-validation{
+.incorrect-validation,
+#loginMessage{
     color: red;
 }
 
