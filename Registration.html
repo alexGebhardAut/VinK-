@@ -11,7 +11,12 @@
     <link rel="stylesheet" href="css/SupportingMethods.css">
 </head>
 <body>
-    <h1>Join Our Community</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-lg-6" align="center">
+                <h1>Join Our Community<span class="glyphicon glyphicon-exclamation-sign"></span></h1>
+            </div>
+        </div>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-lg-6">
                 <div class="row">
@@ -32,8 +37,8 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-lg-12">
-                        <label for="email">EMail*</label>
-                        <input type="email" class="requiredField form-control" placeholder="EMail" id="email" onchange = "validateEmail()"/><span class="incorrect-validation" id = "infoEmail"></span><br>
+                        <label for="email">E-Mail*</label>
+                        <input type="email" class="requiredField form-control" placeholder="E-Mail" id="email" onchange = "validateEmail()"/><span class="incorrect-validation" id = "infoEmail"></span><br>
                     </div>
                 </div>
                 <div class="row">
@@ -77,16 +82,16 @@
                 <input type="checkbox" id="chxNewsletter"/>
                 Sign me up for the newsletter <br>
             </div>
-            <div class="col-xs-12 col-sm-3 col-lg-3">
+            <div class="col-xs-12 col-sm-3 col-lg-3" align="center">
                 <div class="g-recaptcha" data-sitekey="6LeOJ3UUAAAAAND-EUT6sTJpyTFcvtqpWuvkhBw6"></div>
             </div>
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-lg-6">
-                <input class="btn btn-primary btn-block form-control" width="100%" type="button" value="Sign Up" id="btnSignUp" onclick="signUpButton()"/><br>
+                <input class="btn btn-primary btn-block form-control" style="margin-top: 2%" width="100%" type="button" value="Sign Up" id="btnSignUp" onclick="signUpButton()"/><br>
             </div>
         </div>
-
+    </div>
         <a href="Index.html">Home</a>
     <script src="./js/models/User.js"></script>
     <script src="./js/models/Address.js"></script>
