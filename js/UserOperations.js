@@ -127,6 +127,7 @@ function loginButton() {
         }
     }
     if(output !== "login correct") {
+        document.getElementById("loginMessage").setAttribute("class","alert alert-danger");
         document.getElementById("loginMessage").innerHTML = output;
     }else {
         localStorage.setItem("user", JSON.stringify(userData[tempPos]));
