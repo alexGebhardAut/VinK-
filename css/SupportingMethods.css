@@ -6,3 +6,13 @@
 .errorValidation{
     border: 1px solid red;
 }
+
+.openStyle{
+    font-weight: bold;
+    color: green;
+}
+
+.closeStyle{
+    font-weight: bold;
+    color: red;
+}

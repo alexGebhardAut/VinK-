@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vinko - Home</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/SupportingMethods.css">
@@ -27,30 +28,38 @@
         <style>.mapouter{text-align:right;height:378px;width:522px;}.gmap_canvas {overflow:hidden;background:none!important;height:378px;width:522px;}</style>
     </div>
     <br>
-    <h3>Opening hours</h3>
+    <h3>Opening hours <span id="openingHourIcon" class="glyphicon glyphicon-time"></span></h3>
     <table>
-        <tr>
+        <tr id="ohSunday">
             <td>Sunday</td><td>	10AM–9PM</td>
         </tr>
-        <tr>
+        <tr id="ohMonday">
             <td>Monday</td><td>	10AM–9PM</td>
         </tr>
-        <tr>
+        <tr id="ohTuesday">
             <td>Tuesday</td><td>10AM–9PM</td>
         </tr>
-        <tr>
+        <tr id="ohWednesday">
             <td>Wednesday</td><td>10AM–9PM</td>
         </tr>
-        <tr>
+        <tr id="ohThursday">
             <td>Thursday</td><td>10AM–9PM</td>
         </tr>
-        <tr>
+        <tr id="ohFriday">
             <td>Friday</td><td>	10AM–9PM</td>
         </tr>
-        <tr>
+        <tr id="ohSaturday">
             <td>Saturday</td><td>10AM–9PM</td>
         </tr>
     </table>
+
+    <br>
+
+    <div id="socialMediaIcons">
+        <a href="https://www.facebook.com/alex.gebhard" target="_blank"><span class="fa fa-facebook-square" style="font-size: 75px"></span></a>
+        <a href="https://www.instagram.com/alex.gebhard/?hl=en" target="_blank"><span class="fa fa-instagram" style="font-size: 75px"></span></a>
+    </div>
+
     <!-- Modal -->
     <div class="modal fade" id="alertModelLogin" tabindex="-1" role="dialog" aria-labelledby="alertModalLoginLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -90,10 +99,13 @@
             </div>
         </div>
     </div>
-
+    <script src="./js/models/OpeningHour.js"></script>
     <script src="./js/models/User.js"></script>
     <script src="./js/models/Address.js"></script>
     <script src="./js/SupportingMethods.js"></script>
     <script src="./js/UserOperations.js"></script>
+    <script type="application/javascript">
+        showOpeningHours();
+    </script>
 </body>
 </html>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Appointment</title>
 </head>
 <body>
     
@@ -12,16 +12,12 @@
 
     <p>
 
-        <span id="userInfo"></span>
-       
-        <br>
+        <span id="userInfo"></span><br>
 
-        <b>Date and Time</b>
+        <label for="datetime">Date and Time</label>
         <input type="date" id="datetime" onchange="validateDatetime()"/><span id="datetimeInfo"></span> <br>
 
-        <br>
-
-        <b>Product Category</b>
+        <label for="productCategory">Product Category</label>
         <select id = "productCategory">
             <option value="dress">Dress</option>
             <option value="sweater">Sweater</option>
@@ -31,14 +27,9 @@
             <option value="shoes">Shoes</option>
             <option value="bags">Bags</option>
             <option value="accessoiries">Accessoiries</option>
-        </select>
-
-        <br>
+        </select><br>
 
         <b>Give Us Some Details!</b>
-
-        <br> 
-
         <textarea placeholder="What do you want to fix?" id="message" rows="10" cols="30"></textarea>
 
         <br>
