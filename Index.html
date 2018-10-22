@@ -13,11 +13,10 @@
 </head>
 <body>
     <h1>Landing page of Vinko</h1>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModelLogin">Login</button>
+    <a href="Registration.html">Sign up</a><br><br>
 
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModelLogin">Login</button><a href="Registration.html">Sign up</a>
-    <br>
-    <br>
-
+    <!-- Google Maps Integration -->
     <div class="mapouter">
         <div class="gmap_canvas">
             <iframe width="522" height="378" id="gmap_canvas" src="https://maps.google.com/maps?q=Emdrupvej%2024&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
@@ -25,8 +24,17 @@
             <a href="https://www.pureblack.de">pureblack.de</a>
         </div>
         <style>.mapouter{text-align:right;height:378px;width:522px;}.gmap_canvas {overflow:hidden;background:none!important;height:378px;width:522px;}</style>
-    </div>
-    <br>
+    </div><br>
+
+    <!--
+        Opening hours with Clock Icon
+        Glyphicon icons are always in a span with the class "glyphicon glyphicon-[nameOfTheIcon]"
+        The set id is for the javascript interaction later on
+        The opening hours itself are stored in a HTML-table
+        table - tag for the whole table
+        tr - table row
+        td - table cell
+     -->
     <h3>Opening hours <span id="openingHourIcon" class="glyphicon glyphicon-time"></span></h3>
     <table>
         <tr id="ohSunday">
@@ -50,39 +58,94 @@
         <tr id="ohSaturday">
             <td>Saturday</td><td>10AM–9PM</td>
         </tr>
-    </table>
+    </table><br>
 
-    <br>
-
+    <!--
+        The social Media Icons are simple Links with the a-tag and two attributes:
+            - href: the link where the user should be forwarded
+            - target="_blank": this attribute is necessary to open the linked URL in a new tab
+        The content is a font-awesome icon. As well as the glyphicon icon, the font awesome icon has to be in a span element with the class "fa fa-[nameOfTheIcon]"
+        The font-size is just for styling
+    -->
     <div id="socialMediaIcons">
         <a href="https://www.facebook.com/alex.gebhard" target="_blank"><span class="fa fa-facebook-square" style="font-size: 75px"></span></a>
         <a href="https://www.instagram.com/alex.gebhard/?hl=en" target="_blank"><span class="fa fa-instagram" style="font-size: 75px"></span></a>
     </div>
 
-    <!-- Modal -->
+    <!--
+        *** *** Modal *** ***
+
+        Modal is a fancy implementation for an alert box, designed and implemented by the bootstrap developer (-> twitter).
+        The modal has following basic structure:
+            - the parent model container
+                it's a div with the class modal. the second class fade describes how the modal appears
+                the role is dialog because we interact with the modal, it's not just an information box
+                id for javascript interaction later on
+                tabindex..?, aria-labelledby..?, aria-hidden..?
+            - the model dialog
+                it's a div with the class modal-dialog and modal-dialog-centered to position the modal box in the center of the monitor (regarding to the documentation)
+            - the modal content
+                the modal content container contains everything what the user can see
+                the content itself is divided in header, body, footer. these areas are separated with a thin line.
+                - header
+                    The header contains one row which is divided in three columns
+                    The first and the fourth column is empty to have a thicker frame
+                    The second column contains the title (Login) and the third one the Vinko Logo image.
+                    (1+5+5+1 = 12 -> the max amount of columns in one row)
+                - body
+                    The body contains five different rows:
+                        - 1: Email
+                             Three columns (1+10+1): first and third are empty because of the thicker frame, second one contains the label and input form for the email address
+                        - 2: Password
+                             Three columns (1+10+1): first and third are empty because of the thicker frame, second one contains the label and input group div for the password
+                             The input group div is necessary to implement the clickable icon within the input form. The input group contains the input field itself
+                             and a span-tag with the class input-group-addon. This class defines the area at the end of the input field. Within this span, there is another span-tag
+                             which represents the icon as described above. The onmousedown and onmouseup event listener in the parent span-tag call our javascript method to make the
+                             password visible when you click on the icon and make the password invisible when you release the mouse afterwards.
+                        - 3: Remember me and Forgot password
+                             Four columns (1+5+5+1): first and fourth are empty because of the thicker frame, second one contains the label and checkbox for the remember me function
+                             and the third one contains the link to the forgot my password functionality.
+                        - 4: Login Button
+                             Three columns (1+10+1): first and third are empty because of the thicker frame, second one contains the button to submit the form
+                             Bootstrap contains different button styles. Here we use the btn success (green). It's always the class "btn btn-[nameOfTheButton]" The additional class btn-block
+                             is necessary to stretch the button to the complete column size.
+                        - 5: Validation message
+                             Three columns (1+10+1): first and third are empty because of the thicker frame, second one contains an empty div to position a possible validation error message
+                             Is there a verification error (fields are empty, email and/or password are not correct, the user is not registered) then the div #loginMessage will get the
+                             error message as new content and the div container itself will get an additional class called "alert alert-danger". This is a bootstrap component to show alerts
+                             in a remarkable way.
+               - footer
+                   As I mentioned, the different parts of the content (header, body, footer) are separated by a thin line. Our goal was to position a stretched button direct below the form
+                   itself without any separator. That's the reason why we do not need any footer area and so we commented it out.
+    -->
     <div class="modal fade" id="alertModelLogin" tabindex="-1" role="dialog" aria-labelledby="alertModalLoginLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-5">
                             <h5 class="modal-title" id="alertModalLoginLabel" style="margin-top:3%"><b>Login</b></h5>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-5">
                             <img src="img/VinKo.png" alt="Vinko Logo" style="width:75%" align="right"/>
                         </div>
+                        <div class="col-lg-1"></div>
                     </div>
                 </div>
                 <div id="alertModelBodyLogin" class="modal-body">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
                             <!-- Email -->
                             <label for="email"><b>Email</b></label>
                             <input class="form-control" type="text" id="email"/><br>
                         </div>
+                        <div class="col-lg-1"></div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
                             <!-- Password -->
                             <label for="password"><b>Password</b></label>
                             <div class='input-group'>
@@ -92,29 +155,39 @@
                                 </span>
                             </div>
                         </div>
+                        <div class="col-lg-1"></div>
                     </div>
                     <div class="row" style="margin-top: 3%">
-                        <div class="col-lg-6">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-5">
                             <!-- Remember me checkbox -->
                             <label for="rememberme">Remember me?</label>
                             <input type="checkbox" id="rememberme" checked/>
                         </div>
-                        <div class="col-lg-6" align="right">
+                        <div class="col-lg-5" align="right">
                             <!-- Forgot my password link -->
                             <a href="#" id="linkForgotPw">Forgot my password</a>
                         </div>
+                        <div class="col-lg-1"></div>
                     </div>
                     <div class="row" style="margin-top: 3%">
-                        <div class="col-lg-12">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <button type="button" class="btn btn-success btn-block" id="btnLogin" onclick="loginButton()">Login</button>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row" style="margin-top: 3%">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
                             <div id="loginMessage" align="center" role="alert">
                             </div>
                         </div>
+                        <div class="col-lg-1"></div>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" id="btnLogin" onclick="loginButton()">Login</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+                <!--<div class="modal-footer row">
+                </div>-->
             </div>
         </div>
     </div>
