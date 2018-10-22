@@ -15,3 +15,8 @@
     font-weight: bold;
     color: red;
 }
+
+#headerLine{
+    background-color: peachpuff;
+    padding: 0.4%;
+}

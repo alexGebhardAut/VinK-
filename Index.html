@@ -12,9 +12,17 @@
     <link rel="stylesheet" href="css/SupportingMethods.css">
 </head>
 <body>
+    <div class="row" id="headerLine">
+        <div class="col-lg-8"></div>
+        <div class="col-lg-2" align="right" id="userNameDiv"></div>
+        <div class="col-lg-1" id="signUpOrUserDiv">
+            <!-- <a class="btn btn-primary" href="Registration.html">Sign up</a> -->
+        </div>
+        <div class="col-lg-1" align="left" id="logInOrOutDiv">
+            <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#alertModelLogin">Login</button>-->
+        </div>
+    </div>
     <h1>Landing page of Vinko</h1>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#alertModelLogin">Login</button>
-    <a href="Registration.html">Sign up</a><br><br>
 
     <!-- Google Maps Integration -->
     <div class="mapouter">
@@ -139,7 +147,7 @@
                         <div class="col-lg-10">
                             <!-- Email -->
                             <label for="email"><b>Email</b></label>
-                            <input class="form-control" type="text" id="email"/><br>
+                            <input class="form-control" type="text" placeholder="Email" id="email"/><br>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -149,7 +157,7 @@
                             <!-- Password -->
                             <label for="password"><b>Password</b></label>
                             <div class='input-group'>
-                                <input class="form-control" type="password" id="password"/>
+                                <input class="form-control" type="password" placeholder="Password" id="password"/>
                                 <span class="input-group-addon" id="showPw" onmousedown="showPwFuncDown()" onmouseup="showPwFuncUp()">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </span>

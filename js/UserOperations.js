@@ -8,6 +8,49 @@ var userData = [
         false)
 ];
 
+var user = JSON.parse(localStorage.getItem("user"));
+var divColHeaderSignUp = document.getElementById("signUpOrUserDiv");
+var divColHeaderLogin = document.getElementById("logInOrOutDiv");
+var divColHeaderUser = document.getElementById("userNameDiv");
+if(user === null){
+    //<a class="btn btn-primary" href="Registration.html">Sign up</a>
+    var aElemen = document.createElement("a");
+    aElemen.setAttribute("class", "btn btn-primary");
+    aElemen.setAttribute("href", "Registration.html");
+    aElemen.innerHTML = "Sign up";
+    divColHeaderSignUp.appendChild(aElemen);
+    divColHeaderSignUp.setAttribute("align","right");
+
+    //<button type="button" class="btn btn-success" data-toggle="modal" data-target="#alertModelLogin">Login</button>
+    var buttonElemen = document.createElement("button");
+    buttonElemen.setAttribute("type", "button");
+    buttonElemen.setAttribute("class", "btn btn-success");
+    buttonElemen.setAttribute("data-toggle", "modal");
+    buttonElemen.setAttribute("data-target", "#alertModelLogin");
+    buttonElemen.innerHTML = "Login";
+    divColHeaderLogin.appendChild(buttonElemen);
+}else{
+    //<span><span class="fa fa-user"></span>Alexander Gebhard</span>
+    var linkAppointment = document.createElement("a");
+    linkAppointment.setAttribute("class","btn btn-warning");
+    linkAppointment.setAttribute("href","ScheduleAppointment.html");
+    linkAppointment.innerText = "Appointment";
+    divColHeaderSignUp.appendChild(linkAppointment);
+    divColHeaderSignUp.setAttribute("align","center");
+
+    var contentSpan = document.createElement("span");
+    contentSpan.innerHTML = "<span class='fa fa-user'></span> " + user._firstname + " " + user._lastname;
+    divColHeaderUser.appendChild(contentSpan);
+    divColHeaderUser.setAttribute("style","margin-top:0.4%");
+
+    var buttonElemen = document.createElement("button");
+    buttonElemen.setAttribute("type", "button");
+    buttonElemen.setAttribute("class", "btn btn-info");
+    buttonElemen.setAttribute("onclick","logout()");
+    buttonElemen.innerHTML = "Logout";
+    divColHeaderLogin.appendChild(buttonElemen);
+}
+
 // This function should make sure that certain fields in the form are required to be filled out
 function signUpButton() {
     var requiredFields = [];
@@ -131,7 +174,7 @@ function loginButton() {
         document.getElementById("loginMessage").innerHTML = output;
     }else {
         localStorage.setItem("user", JSON.stringify(userData[tempPos]));
-        window.location.href = "/VinKo/ScheduleAppointment.html";
+        window.location.href = "/VinKo/Index.html";
     }
 }
 
@@ -140,3 +183,9 @@ function logout(){
     localStorage.clear();
     window.location.href = "/VinKo/Index.html";
 }
+
+$('#password').keypress(function(e) {
+    if (e.which === 13) {
+        loginButton();
+    }
+});
