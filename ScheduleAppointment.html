@@ -13,65 +13,111 @@
 </head>
 <body>
     
-    <!-- defines the first row/header with the title of the page -->
     <div class="row">
-        <div class="col-lg-1"></div>
-        <div class="col-lg-10"><h1>Schedule an Appointment</h1></div>
-        <div class="col-lg-1"></div>
+        <div class="col-lg-12" align="center">
+            <a href="Index.html"><img src="/img/VinKo.png" class="img-fluid" style="width:15%; margin-top:1%"/></a>
+        </div>
     </div>
 
-        <!-- define the second row with the username and email address of the logged-in user -->
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3"><span id="username"></span></div>
-            <div class="col-lg-3"><span id="userEmail"></span></div>
-            <div class="col-lg-5"></div>
+    <div class="row">
+        <div class="col-lg-7">
+            
+             <!-- defines the first row/header with the title of the page -->
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10"><h1 style="color: rgb(189, 135, 48)">Schedule an Appointment</h1></div>
+                <div class="col-lg-1"></div>
+            </div>
+
+            <!-- define the second row with the username and email address of the logged-in user, and the 
+                    product category -->
+            <div class="row" style="margin-top: 1%">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5"><b>User Information</b>
+                    <br>
+                    <span id="username"></span>
+                    <br>
+                    <span id="userEmail"></span></div>
+                <div class="col-lg-5">
+                    <label for="productCategory">Product Category</label><br>
+                    <select class="form-control" id = "productCategory">
+                        <option value="-1">Please, select one of the following options:</option>
+                        <option value="dress">Dress</option>
+                        <option value="sweater">Sweater</option>
+                        <option value="jacket">Jacket</option>
+                        <option value="tops">Top & T-Shirt</option>
+                        <option value="bottoms">Bottom</option>
+                        <option value="shoes">Shoes</option>
+                        <option value="bags">Bags</option>
+                        <option value="accessoiries">Accessoiries</option>
+                    </select><span id="productCategoryInfo"></span>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+
+            <!-- define the next row with the date and time -->
+            <div class="row" style="margin-top: 1%">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-5">
+                    <label for="dateApt">Date</label><br>
+                    <input class="form-control" type="date" id="dateApt" onchange="validateDateApt()"/><span id="dateAptInfo"></span>
+                </div>
+                <div class="col-lg-5">
+                    <label for="timeApt">Time</label><br>
+                    <select class="form-control" id = "timeApt">
+                        <option value="-1">Please, select a timeslot:</option>
+                        <option value="10">10:00-10:30</option>
+                        <option value="10.5">10:30-11:00</option>
+                        <option value="11">11:00-11:30</option>
+                        <option value="11.5">11:30-12:00</option>
+                        <option value="12">12:00-12:30</option>
+                        <option value="12.5">12:30-13:00</option>
+                        <option value="13">13:00-13:30</option>
+                        <option value="13.5">13:30-14:00</option>
+                        <option value="14">14:00-14:30</option>
+                        <option value="14.5">14:30-15:00</option>
+                        <option value="15">15:00-15:30</option>
+                        <option value="15.5">15:30-16:00</option>
+                        <option value="16">16:00-16:30</option>
+                        <option value="16.5">16:30-17:00</option>
+                        <option value="17">17:00-17:30</option>
+                        <option value="17.5">17:30-18:00</option>
+                        <option value="18">18:00-18:30</option>
+                        <option value="18.5">18:30-19:00</option>
+                    </select><span id="timeAptInfo"></span>
+                    
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+
+            <!-- defines the last row where users can enter some extra details on their repair appointment -->
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10" style="margin-top: 1%">
+                    <label for="message">Give Us Some Details!</label><br>
+                    <textarea class="form-control" placeholder="What do you want us to fix?" id="message" rows="10" cols="30"></textarea>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+
+            <!-- this row includes the button to schedule the appointment -->
+            <div class="row" style="margin-top: 1%">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                    <input type="button" class="btn btn-primary" value="Schedule My Appointment!" id="btnSchedule" onclick="createAppointmentBtn()" style="background-color: rgb(189, 135, 48); border-color: rgb(189, 135, 48)"/>
+                </div>
+                <div class="col-lg-1"></div>
+            </div>
+    
+        <!-- A photo is added on the right side of the page -->
+        </div>
+        <div class="col-lg-5">
+            <img src="https://seamssoeasy.ca/wp-content/uploads/2017/08/lady-sewing.jpg" class="img-fluid" alt="Clothing Alterations" style="width:90%; height:auto; margin-top: 12%; margin-right: 1%"/>
         </div>
 
-        <!-- define the next row with the date and time, and the product category -->
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3" >
-                <label for="datetime">Date and Time</label><br>
-                <input type="date" id="datetime" onchange="validateDatetime()"/><span id="datetimeInfo"></span>
-            </div>
-            <div class="col-lg-3">
-                <label for="productCategory">Product Category</label><br>
-                <select id = "productCategory">
-                    <option value="dress">Dress</option>
-                    <option value="sweater">Sweater</option>
-                    <option value="jacket">Jacket</option>
-                    <option value="tops">Top & T-Shirt</option>
-                    <option value="bottoms">Bottom</option>
-                    <option value="shoes">Shoes</option>
-                    <option value="bags">Bags</option>
-                    <option value="accessoiries">Accessoiries</option>
-                </select>
-            </div>
-            <div class="col-lg-5"></div>
-        </div>
+    </div>
 
-        <!-- defines the last row where users can enter some extra details on their repair appointment -->
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-6">
-                <label for="message">Give Us Some Details!</label><br>
-                <textarea placeholder="What do you want to fix?" id="message" rows="10" cols="30"></textarea>
-            </div>
-            <div class="col-lg-5"></div>
-        </div>
-
-        <!-- this row includes the button to schedule the appointment -->
-        <div class="row">
-            <div class="col-lg-1"></div>
-            <div class="col-lg-6">
-                <input type="button" class="btn btn-primary" value="Schedule My Appointment!" id="btnSchedule" onclick="createAppointmentBtn()" style="background-color: rgb(189, 135, 48); border-color: rgb(189, 135, 48)"/>
-            </div>
-            <div class="col-lg-5"></div>
-        </div>
-
-
-    <a href="Index.html">Home</a>
+       
     <script src="./js/models/User.js"></script>
     <script src="./js/models/Address.js"></script>
     <script src="./js/models/Appointment.js"></script>

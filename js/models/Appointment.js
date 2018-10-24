@@ -1,7 +1,8 @@
 class Appointment {
-    constructor(user, dateTime, productCategory, comment) {
+    constructor(user, date, time, productCategory, comment) {
         this._user = user;
-        this._dateTime = dateTime;
+        this._date = date;
+        this._time = time;
         this._productCategory = productCategory;
         this._comment = comment;
     }
@@ -14,12 +15,20 @@ class Appointment {
         this._user = value;
     }
 
-    get dateTime() {
-        return this._dateTime;
+    get date() {
+        return this._date;
     }
 
-    set dateTime(value) {
-        this._dateTime = value;
+    set date(value) {
+        this._date = value;
+    }
+    
+    get time() {
+        return this._time;
+    }
+
+    set time(value) {
+        this._time = value;
     }
 
     get productCategory() {
