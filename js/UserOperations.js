@@ -174,14 +174,14 @@ function loginButton() {
         document.getElementById("loginMessage").innerHTML = output;
     }else {
         localStorage.setItem("user", JSON.stringify(userData[tempPos]));
-        window.location.href = "/VinKo/Index.html";
+        window.location.href = "/Index.html";
     }
 }
 
 function logout(){
     localStorage.removeItem("user");
     localStorage.clear();
-    window.location.href = "/VinKo/Index.html";
+    window.location.href = "/Index.html";
 }
 
 $('#password').keypress(function(e) {

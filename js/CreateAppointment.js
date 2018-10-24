@@ -4,7 +4,8 @@ if(user === null){
     alert("Your are not logged in. Please go back to the main page and log in");
     window.location.href = "/VinKo/Index.html";
 }else {
-    document.getElementById("userInfo").innerHTML = user._firstname + " " + user._lastname + "<br>" + user._email;
+    document.getElementById("username").innerHTML = user._firstname + " " + user._lastname;
+    document.getElementById("userEmail").innerHTML = user._email;
 
     function createAppointmentBtn() {
         var date = document.getElementById("datetime");
@@ -16,7 +17,6 @@ if(user === null){
         requiredFields.push(date);
         requiredFields.push(product);
         requiredFields.push(comment);
-
 
         //check if all required fields are filled out
         if (validateDatetime() === false) {

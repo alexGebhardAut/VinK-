@@ -20,3 +20,8 @@
     background-color: peachpuff;
     padding: 0.4%;
 }
+
+#message{
+    resize: none;
+    width: 85%;
+}
