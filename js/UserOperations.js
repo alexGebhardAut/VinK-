@@ -72,10 +72,10 @@ function signUpButton() {
 /* When signing up, the website should check if all the required fields are filled out,
     and if the email, DOB, phone number, password, and repeat password meet our requirements */
     else if (requiredField(requiredFields) === false ||
-                validateEmail() === false ||
-                validateDob() === false ||
-                validatePhoneNo() === false ||
-                validatePW() === false ||
+                validateEmail(requiredFields[2]) === false ||
+                validateDob(requiredFields[3]) === false ||
+                validatePhoneNo(requiredFields[4]) === false ||
+                validatePW(requiredFields[5]) === false ||
                 matchPW() === false) {
         callDialog("Something got wrong")
     }
@@ -174,14 +174,14 @@ function loginButton() {
         document.getElementById("loginMessage").innerHTML = output;
     }else {
         localStorage.setItem("user", JSON.stringify(userData[tempPos]));
-        window.location.href = "/Index.html";
+        window.location.href = "Index.html";
     }
 }
 
 function logout(){
     localStorage.removeItem("user");
     localStorage.clear();
-    window.location.href = "/Index.html";
+    window.location.href = "Index.html";
 }
 
 $('#password').keypress(function(e) {
