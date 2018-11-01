@@ -7,6 +7,7 @@
     <title>Document</title>
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/SupportingMethods.css">
@@ -23,14 +24,14 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-lg-6">
                         <label for="firstName">First Name*</label>
-                        <input type="text" class="requiredField form-control" placeholder="First Name" id="firstName"/><br>
+                        <input type="text" class="requiredField form-control" placeholder="First Name" id="firstName"/><span class="incorrect-validation" id = "infoFirstName"></span><br>
 
                         <label for="dob">Date of Birth*</label>
                         <input type="date" class="requiredField form-control" placeholder="Date of Birth" id="dob" onchange="validateDob(this)"/><span class="incorrect-validation" id = "infoDob"></span><br>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-lg-6">
                         <label for="lastName">Last Name*</label>
-                        <input type="text" class="requiredField form-control" placeholder="Last Name" id="lastName"/><br>
+                        <input type="text" class="requiredField form-control" placeholder="Last Name" id="lastName"/><span class="incorrect-validation" id = "infoLastName"></span><br>
 
                         <label for="phoneNo">Phone Number*</label>
                         <input type="text" class="requiredField form-control" placeholder="Phone number" id="phoneNo" onchange="validatePhoneNo(this)"/><span class="incorrect-validation" id = "infoPhoneNo"></span><br>
@@ -45,11 +46,11 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-6 col-lg-6">
                         <label for="password">Password*</label>
-                        <input type="password" class="requiredField form-control" placeholder="Password" id="password" onchange="validatePW(this);matchPW()"/><span class="incorrect-validation" id = "infoPW"></span><br>
+                        <input type="password" class="requiredField form-control" placeholder="Password" id="password" onchange="validatePW(this);matchPW()"/><span class="incorrect-validation" id = "infoPassword"></span><br>
                     </div>
                     <div class="col-xs-12 col-sm-6 col-lg-6">
                         <label for="rptPassword">Password Repeat*</label>
-                        <input type="password" class="requiredField form-control" placeholder="Password Repeat" id="rptPassword" onchange="matchPW()"/><span class="incorrect-validation" id = "infoRptPW"></span><br>
+                        <input type="password" class="requiredField form-control" placeholder="Password Repeat" id="rptPassword" onchange="matchPW()"/><span class="incorrect-validation" id = "infoRptPassword"></span><br>
                     </div>
                 </div>
             </div>
@@ -70,18 +71,22 @@
                 <input type="text" class="form-control" placeholder="Address Line 2" id="address2"/> <br>
 
                 <label for="city">City*</label>
-                <input type="text" class="requiredField form-control" placeholder="City" id="city"/><br>
+                <input type="text" class="requiredField form-control" placeholder="City" id="city"/><span class="incorrect-validation" id = "infoCity"></span><br>
 
                 <label for="country">Country*</label>
-                <input type="text" class="requiredField form-control" placeholder="Country" id="country"/><br>
+                <input type="text" class="requiredField form-control" placeholder="Country" id="country"/><span class="incorrect-validation" id = "infoCountry"></span><br>
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-12 col-sm-3 col-lg-3">
-                <input type="checkbox" id="chxSignUpAgr"/>
-                I agree with everything! <br>
-                <input type="checkbox" id="chxNewsletter"/>
-                Sign me up for the newsletter <br>
+            <div class="col-xs-12 col-sm-3 col-lg-3" style="padding-top: 1%">
+                <label class="container" id="agrLabelContainer"> I agree with everything!
+                    <input type="checkbox" id="chxSignUpAgr" onclick="validateAgreement(this)">
+                    <span class="checkmark" id="agrCheckMarkSpan"></span>
+                </label>
+                <label class="container"> Sign me up for the newsletter
+                    <input type="checkbox" id="chxNewsletter">
+                    <span class="checkmark"></span>
+                </label>
             </div>
             <div class="col-xs-12 col-sm-3 col-lg-3" align="center">
                 <div class="g-recaptcha" data-sitekey="6LeOJ3UUAAAAAND-EUT6sTJpyTFcvtqpWuvkhBw6"></div>
@@ -109,7 +114,7 @@
                     Dialog Content
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='Index.html'" >Close</button>
                 </div>
             </div>
         </div>

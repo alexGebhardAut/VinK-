@@ -8,13 +8,12 @@ if(user === null){
     document.getElementById("userEmail").innerHTML = user._email;
 }
 
-function createAppointmentBtn() {
+function createAptBtn() {
     var date    = document.getElementById("dateApt");
     var time    = document.getElementById("timeApt");
     var product = document.getElementById("productCategory");
     var comment = document.getElementById("message");
 
-    //check if all required fields are filled out
     if(validateFields(date, comment, product, time) === true) {
         appointmentData.push(new Appointment(user, date.value, time.value, product.value, comment.value));
         alert("Appointment created! We can't wait to see you soon at VinKø!")

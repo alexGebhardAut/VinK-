@@ -51,67 +51,52 @@ if(user === null){
     divColHeaderLogin.appendChild(buttonElemen);
 }
 
+function validateFields(requiredFields, checkboxElement, recaptchaElement){
+    var checkArray = [  validateAgreement(checkboxElement),
+                        requiredField(requiredFields),
+                        validateEmail(requiredFields[4]),
+                        validateDob(requiredFields[1]),
+                        validatePhoneNo(requiredFields[3]),
+                        validatePW(requiredFields[5]),
+                        matchPW(),
+                        validateReCaptcha(recaptchaElement),
+                        uniqueEmail(requiredFields[4].value)
+    ];
+    for(var i = 0; i<checkArray.length; i++){
+        if(checkArray[i] === false)
+            return false;
+    }
+    return true;
+}
+
+
 // This function should make sure that certain fields in the form are required to be filled out
 function signUpButton() {
-    var requiredFields = [];
-    requiredFields.push(document.getElementById("firstName"));
-    requiredFields.push(document.getElementById("lastName"));
-    requiredFields.push(document.getElementById("email"));
-    requiredFields.push(document.getElementById("dob"));
-    requiredFields.push(document.getElementById("phoneNo"));
-    requiredFields.push(document.getElementById("password"));
-    requiredFields.push(document.getElementById("rptPassword"));
-    requiredFields.push(document.getElementById("city"));
-    requiredFields.push(document.getElementById("country"));
-
-// The user has to agree with all the T&Cs to continue to sign up
-    if (document.getElementById("chxSignUpAgr").checked === false){
-        callDialog("You did not agree with everything");
-    }
-
-/* When signing up, the website should check if all the required fields are filled out,
-    and if the email, DOB, phone number, password, and repeat password meet our requirements */
-    else if (requiredField(requiredFields) === false ||
-                validateEmail(requiredFields[2]) === false ||
-                validateDob(requiredFields[3]) === false ||
-                validatePhoneNo(requiredFields[4]) === false ||
-                validatePW(requiredFields[5]) === false ||
-                matchPW() === false) {
-        callDialog("Something got wrong")
-    }
-
-// Users should check the Google ReCAPTCHA box before signing up to validate that they're real users
-    else if (document.getElementById("g-recaptcha-response").value.length === 0) {
-        callDialog("Please, tick ReCAPTCHA checkbox")
-    }
-
-// This should check if the email is already in use or not by calling the uniqueEmail function
-    else if (uniqueEmail(requiredFields[2].value) === false) {
-        callDialog("The email address is already used")
-    }
+    /* [0] : "firstName"       [1] : "dob"         [2] : "lastName"    [3] : "phoneNo"     [4] : "email"
+       [5] : "password"        [6]"rptPassword"    [6] : "city"        [7] : "country" */
+    var requiredFields = document.getElementsByClassName("requiredField");
 
 /* If everything is correctly filled out, a new user will be created
     The user's information includes the object address
     The news letter box can be checked or not (boolean) depending on the user's preference */
-    else{
-        var user = new User(requiredFields[0].value,
-                            requiredFields[1].value,
-                            requiredFields[2].value,
-                            requiredFields[3].value,
-                            requiredFields[4].value,
-                            requiredFields[5].value,
-                            new Address(document.getElementById("address1").value,
-                                        document.getElementById("address2").value,
-                                        requiredFields[7].value,
-                                        document.getElementById("region").value,
-                                        document.getElementById("zipCode").value,
-                                        requiredFields[8].value),
+    if(validateFields(requiredFields, document.getElementById("chxSignUpAgr"), document.getElementById("g-recaptcha-response"))){
+        var user = new User(requiredFields[0].value,                                //firstname
+                            requiredFields[2].value,                                //lastname
+                            requiredFields[4].value,                                //email
+                            requiredFields[1].value,                                //dob
+                            requiredFields[3].value,                                //phoneNo
+                            requiredFields[5].value,                                //password
+                            new Address(document.getElementById("address1").value,  //addressLine1
+                                        document.getElementById("address2").value,  //addressLine2
+                                        requiredFields[6].value,                    //city
+                                        document.getElementById("region").value,    //region
+                                        document.getElementById("zipCode").value,   //zipCode
+                                        requiredFields[7].value),                   //country
                             document.getElementById("chxNewsletter").checked
             );
-
-// A new variable user is created and is pushed into the array userData
+        // A new variable user is created and is pushed into the array userData
         userData.push(user);
-        callDialog("Congratulations, you have become a member!")
+        callDialog("Congratulations, you have become a member! Please log in on the main page");
     }
 }
 
@@ -128,13 +113,8 @@ function showPwFuncUp() {
     Parameter email
     Return value is boolean */
 function uniqueEmail(email) {
-    if (userData.length === 0) {
-        return true;
-    }
     for(var i = 0; i < userData.length; i++) {
-        if (userData[i].email === email) {
-            return false;
-        }
+        if (userData[i].email === email) return false;
     }
     return true;
 }
@@ -150,15 +130,14 @@ function uniqueEmail(email) {
 function loginButton() {
     var output;
     var fields = [document.getElementById("email"), document.getElementById("password")];
-    console.log(fields);
-    if (requiredField(fields) === false)
+    if (fields[0].value.length === 0 || fields[1].value.length === 0)
         output = "Please fill out your email address and password";
     else {
         var tempPos = -1;
         for (var i = 0; i < userData.length; i++) {
             if (fields[0].value === userData[i].email) {
                 if (fields[1].value === userData[i].password) {
-                    output = "login correct"; tempPos = i; break;
+                    output = "Login correct"; tempPos = i; break;
                 } else {
                     output = "Something went wrong"; tempPos = i; break;
                 }
@@ -169,7 +148,7 @@ function loginButton() {
             output = "The given user is not registered";
         }
     }
-    if(output !== "login correct") {
+    if(output !== "Login correct") {
         document.getElementById("loginMessage").setAttribute("class","alert alert-danger");
         document.getElementById("loginMessage").innerHTML = output;
     }else {
@@ -180,7 +159,6 @@ function loginButton() {
 
 function logout(){
     localStorage.removeItem("user");
-    localStorage.clear();
     window.location.href = "Index.html";
 }
 
@@ -189,3 +167,19 @@ $('#password').keypress(function(e) {
         loginButton();
     }
 });
+
+function validateAgreement(element){
+    var agrElem = document.getElementById("agrCheckMarkSpan");
+    var agrSpanElem = document.getElementById("agrLabelContainer");
+    if(element.checked === false){
+        agrElem.setAttribute("class", agrElem.getAttribute("class") + " validErrorAgreement");
+        agrSpanElem.setAttribute("class", agrSpanElem.getAttribute("class") + " incorrect-validation");
+        return false;
+    }else{
+        if(agrElem.getAttribute("class").includes(" validErrorAgreement")){
+            agrElem.setAttribute("class", agrElem.getAttribute("class").substr(0, agrElem.getAttribute("class").length-20));
+            agrSpanElem.setAttribute("class", agrSpanElem.getAttribute("class").substr(0, agrSpanElem.getAttribute("class").length-21));
+        }
+        return true;
+    }
+}

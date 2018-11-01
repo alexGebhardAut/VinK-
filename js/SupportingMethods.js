@@ -1,15 +1,20 @@
 // The website should check if all the required fields are filled out
 // The returned value type is Boolean
 function requiredField(fieldsArray) {
+    var check = true;
     for(var i = 0; i < fieldsArray.length; i++) {
-        if (fieldsArray[i].value.length === 0) return false;
+        if (fieldsArray[i].value.length === 0){
+            check = showErrorValidation(fieldsArray[i], "Please fill out", "info" + fieldsArray[i].getAttribute("id").charAt(0).toUpperCase() + fieldsArray[i].getAttribute("id").slice(1));
+        }else{
+            removeErrorValidation(fieldsArray[i], "info" + fieldsArray[i].getAttribute("id").charAt(0).toUpperCase() + fieldsArray[i].getAttribute("id").slice(1));
+        }
     }
-    return true;
+    return check;
 }
 
 // Validate if the provided email address is a valid email address
 function validateEmail(element) {
-    var messageId = "infoMail";
+    var messageId = "infoEmail";
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (re.test(String(element.value).toLowerCase()) === false)
         return showErrorValidation(element, "This is not a valid email address", messageId);
@@ -19,7 +24,7 @@ function validateEmail(element) {
 
 // Validate if password fullfils criteria of minimum 8 characters long
 function validatePW(element) {
-    var messageId = "infoPW";
+    var messageId = "infoPassword";
     if (element.value.length < 8)
         return showErrorValidation(element, "Password must be at least 8 characters long", messageId);
     else
@@ -28,23 +33,15 @@ function validatePW(element) {
 
 // Validate if both password inputs are equal
 function matchPW() {
-    var password = document.getElementById("password").value;
-    var passwordRpt = document.getElementById("rptPassword").value;
-    if(passwordRpt.length === 0) {
-        document.getElementById("rptPassword").setAttribute("class", removeErrorValClass(document.getElementById("rptPassword").getAttribute("class")));
-        document.getElementById("infoRptPW").innerHTML = "";
-        return false;
-    }
-    else if (password !== passwordRpt) {
-        document.getElementById("rptPassword").setAttribute("class", document.getElementById("rptPassword").getAttribute("class") + " errorValidation");
-        document.getElementById("infoRptPW").innerHTML = "Passwords are not equal";
-        return false;
-    }
-    else {
-        document.getElementById("rptPassword").setAttribute("class", removeErrorValClass(document.getElementById("rptPassword").getAttribute("class")));
-        document.getElementById("infoRptPW").innerHTML = "";
-        return true;
-    }
+    var messageId = "infoRptPassword";
+    var password = document.getElementById("password");
+    var passwordRpt = document.getElementById("rptPassword");
+    if(passwordRpt.value.length === 0)
+        return removeErrorValidation(passwordRpt, messageId);
+    else if (password.value !== passwordRpt.value)
+        return showErrorValidation(passwordRpt, "Passwords are not equal", messageId);
+    else
+        return removeErrorValidation(passwordRpt, messageId);
 }
 
 // Validate if a phone number is valid (works only with the country code included in the format)
@@ -60,10 +57,20 @@ function validatePhoneNo(element) {
 // Validate if the date of birth is in the past
 function validateDob(element) {
     var messageId = "infoDob";
-    if (new Date(element.value) > new Date())
+    if(element.value.length === 0)
+        return showErrorValidation(element, "Please fill out", messageId);
+    else if (new Date(element.value) > new Date())
         return showErrorValidation(element, "Date musst be in the past", messageId);
     else
         return removeErrorValidation(element, messageId);
+}
+
+function validateReCaptcha(element){
+    if(element.value.length === 0){
+        document.getElementsByTagName('iframe')[0].setAttribute('class', document.getElementsByTagName('iframe')[0].getAttribute('class') + " errorValidation");
+        return false;
+    }
+    return true;
 }
 
 function removeErrorValClass(actualClassName){
@@ -80,7 +87,9 @@ function callDialog(message){
 }
 
 function showErrorValidation(element, text, messageId){
-    element.setAttribute("class", element.getAttribute("class") + " errorValidation");
+    if(element.getAttribute("class").includes(" errorValidation") === false) {
+        element.setAttribute("class", element.getAttribute("class") + " errorValidation");
+    }
     document.getElementById(messageId).innerHTML = text;
     return false;
 }
