@@ -48,6 +48,17 @@ function showOpeningHours(){
                          new OpeningHour("Sunday", 0, 10, 19) ];
 
     for(var i=0; i<openingHours.length; i++){
+        var divElementParent = document.getElementById("oh"+openingHours[i].dayName);
+        var divElementDayName = document.createElement("div");
+        divElementDayName.setAttribute("class","col-lg-1");
+        divElementDayName.innerText = openingHours[i].dayName;
+        divElementParent.appendChild(divElementDayName);
+
+        var divElementOpeningHours = document.createElement("div");
+        divElementOpeningHours.setAttribute("class","col-lg-1");
+        divElementOpeningHours.innerText = openingHours[i].open + ":00 - " + openingHours[i].close + ":00";
+        divElementParent.appendChild(divElementOpeningHours);
+
         if(openingHours[i].dayNo === actualDateTime.getDay()){
             selectedOpeningHour = openingHours[i];
         }
@@ -57,7 +68,6 @@ function showOpeningHours(){
         var trElem = document.getElementById("oh"+selectedOpeningHour.dayName);
         var icon = document.getElementById("openingHourIcon");
         if(actualDateTime.getHours() >= selectedOpeningHour.open && actualDateTime.getHours() < selectedOpeningHour.close){
-            isOpen = true;
             trElem.setAttribute("class", trElem.getAttribute("class") + " openStyle");
             icon.setAttribute("class", icon.getAttribute("class") + " openStyle");
         }else{

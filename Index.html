@@ -37,49 +37,19 @@
     <!--
         Opening hours with Clock Icon
         Glyphicon icons are always in a span with the class "glyphicon glyphicon-[nameOfTheIcon]"
-        The set id is for the javascript interaction later on
-        The opening hours itself are stored in a HTML-table
-        table - tag for the whole table
-        tr - table row
-        td - table cell
+        The set id is for the javascript interaction
+        The opening hours itself are stored in a Bootstrap HTML row column construct
+        the parent elements with the id "oh[dayName]" will be selected in the JS code and the child elements with dayname and opening hours will be generated dynamically
      -->
 
     <h3>Opening Hours <span id="openingHourIcon" class="glyphicon glyphicon-time"></span></h3>
-
-        <div class="row" id="ohMonday">
-            <div class="col-lg-1">Monday</div>
-            <div class="col-lg-1">10:00–19:00</div>
-        </div>
-
-        <div class="row" id="ohTuesday">
-            <div class="col-lg-1">Tuesday</div>
-            <div class="col-lg-1">10:00–19:00</div>
-        </div>
-
-        <div class="row" id="ohWednesday">
-            <div class="col-lg-1">Wednesday</div>
-            <div class="col-lg-1">10:00–19:00</div>
-        </div>
-
-        <div class="row" id="ohThursday">
-            <div class="col-lg-1">Thursday</div>
-            <div class="col-lg-1">10:00–19:00</div>
-        </div>
-
-        <div class="row" id="ohFriday">
-            <div class="col-lg-1">Friday</div>
-            <div class="col-lg-1">10:00–19:00</div>
-        </div>
-
-        <div class="row" id="ohSaturday">
-            <div class="col-lg-1">Saturday</div>
-            <div class="col-lg-1">10:00–19:00</div>
-        </div>
-
-        <div class="row" id="ohSunday">
-            <div class="col-lg-1">Sunday</div>
-            <div class="col-lg-1">10:00–19:00</div>
-        </div>
+    <div class="row" id="ohMonday">     </div>
+    <div class="row" id="ohTuesday">    </div>
+    <div class="row" id="ohWednesday">  </div>
+    <div class="row" id="ohThursday">   </div>
+    <div class="row" id="ohFriday">     </div>
+    <div class="row" id="ohSaturday">   </div>
+    <div class="row" id="ohSunday">     </div>
 
 
     <!--
