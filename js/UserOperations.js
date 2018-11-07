@@ -73,7 +73,7 @@ function validateFields(requiredFields, checkboxElement, recaptchaElement){
 // This function should make sure that certain fields in the form are required to be filled out
 function signUpButton() {
     /* [0] : "firstName"       [1] : "dob"         [2] : "lastName"    [3] : "phoneNo"     [4] : "email"
-       [5] : "password"        [6]"rptPassword"    [6] : "city"        [7] : "country" */
+       [5] : "password"        [6]"rptPassword"    [6] : "city"        [7] : "country"                      */
     var requiredFields = document.getElementsByClassName("requiredField");
 
 /* If everything is correctly filled out, a new user will be created
@@ -92,7 +92,7 @@ function signUpButton() {
                                         document.getElementById("region").value,    //region
                                         document.getElementById("zipCode").value,   //zipCode
                                         requiredFields[7].value),                   //country
-                            document.getElementById("chxNewsletter").checked
+                            document.getElementById("chxNewsletter").checked        //newsletter
             );
         // A new variable user is created and is pushed into the array userData
         userData.push(user);
@@ -128,33 +128,33 @@ function uniqueEmail(email) {
         If the password is incorrect, the message "something went wrong" will be displayed
     All the outputs are displayed in the form of an alert */ 
 function loginButton() {
-    var output;
     var fields = [document.getElementById("email"), document.getElementById("password")];
-    if (fields[0].value.length === 0 || fields[1].value.length === 0)
-        output = "Please fill out your email address and password";
-    else {
-        var tempPos = -1;
-        for (var i = 0; i < userData.length; i++) {
-            if (fields[0].value === userData[i].email) {
-                if (fields[1].value === userData[i].password) {
-                    output = "Login correct"; tempPos = i; break;
-                } else {
-                    output = "Something went wrong"; tempPos = i; break;
-                }
-            }
+    if (fields[0].value.length === 0 || fields[1].value.length === 0){
+        showLoginAlertMessage("Please fill out your email address and password");
+    }else{
+        var foundedUser = getUserByEmailPw(fields);
+        if (foundedUser === null) {
+            showLoginAlertMessage("Something went wrong.");
+        } else {
+            localStorage.setItem("user", JSON.stringify(foundedUser));
+            window.location.href = "Index.html";
         }
+    }
+}
 
-        if (tempPos === -1) {
-            output = "The given user is not registered";
+function getUserByEmailPw(fields) {
+    for (var i = 0; i < userData.length; i++) {
+        if (fields[0].value === userData[i].email) {
+            if (fields[1].value === userData[i].password)
+                return userData[i];
         }
     }
-    if(output !== "Login correct") {
-        document.getElementById("loginMessage").setAttribute("class","alert alert-danger");
-        document.getElementById("loginMessage").innerHTML = output;
-    }else {
-        localStorage.setItem("user", JSON.stringify(userData[tempPos]));
-        window.location.href = "Index.html";
-    }
+    return null;
+}
+
+function showLoginAlertMessage(output){
+    document.getElementById("loginMessage").setAttribute("class","alert alert-danger");
+    document.getElementById("loginMessage").innerHTML = output;
 }
 
 function logout(){
