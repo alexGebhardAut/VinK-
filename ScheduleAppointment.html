@@ -4,15 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Appointment</title>
+    <title>Vinko - Appointment</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/SupportingMethods.css">
+    <link rel="stylesheet" href="css/AlternativeStyle.css">
+
+    <!-- meta tags for favicon on different devices -->
+    <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon/favicon-16x16.png">
+    <link rel="mask-icon" href="img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <body>
-    
     <div class="row">
         <div class="col-lg-12" align="center">
             <a href="Index.html"><img src="img/VinKo.png" class="img-fluid" style="width:15%; margin-top:1%"/></a>
@@ -25,7 +32,7 @@
              <!-- defines the first row/header with the title of the page -->
             <div class="row">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-10"><h1 style="color: rgb(189, 135, 48)">Schedule an Appointment</h1></div>
+                <div class="col-lg-10"><h1 class="headerSubpages">Schedule an Appointment</h1></div>
                 <div class="col-lg-1"></div>
             </div>
 
@@ -33,23 +40,23 @@
                     product category -->
             <div class="row" style="margin-top: 1%">
                 <div class="col-lg-1"></div>
-                <div class="col-lg-5"><b>User Information</b>
+                <div class="col-lg-5"><span class="glyphicon glyphicon-user"></span> <b>User Information</b>
                     <br>
                     <span id="username"></span>
                     <br>
                     <span id="userEmail"></span></div>
                 <div class="col-lg-5">
-                    <label for="productCategory">Product Category</label><br>
+                    <label for="productCategory"><span class="glyphicon glyphicon-menu-hamburger"></span> Product Category</label><br>
                     <select class="form-control" id = "productCategory" onchange="validateDropDown(this)">
                         <option value="-1">Please, select one of the following options:</option>
-                        <option value="dress">Dress</option>
-                        <option value="sweater">Sweater</option>
-                        <option value="jacket">Jacket</option>
-                        <option value="tops">Top & T-Shirt</option>
-                        <option value="bottoms">Bottom</option>
-                        <option value="shoes">Shoes</option>
-                        <option value="bags">Bags</option>
-                        <option value="accessoiries">Accessoiries</option>
+                        <option value="Dress">Dress</option>
+                        <option value="Sweater">Sweater</option>
+                        <option value="Jacket">Jacket</option>
+                        <option value="Top & T-Shirt">Top & T-Shirt</option>
+                        <option value="Bottoms">Bottom</option>
+                        <option value="Shoes">Shoes</option>
+                        <option value="Bags">Bags</option>
+                        <option value="Accessoiries">Accessoiries</option>
                     </select>
                     <span id="productCategoryInfo" class="incorrect-validation"></span>
                 </div>
@@ -60,31 +67,31 @@
             <div class="row" style="margin-top: 1%">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-5">
-                    <label for="dateApt">Date</label><br>
+                    <label for="dateApt"><span class="glyphicon glyphicon-calendar"></span> Date</label><br>
                     <input class="form-control" type="date" id="dateApt" onchange="validateDateApt(this)"/><span id="dateAptInfo" class="incorrect-validation"></span>
                 </div>
                 <div class="col-lg-5">
-                    <label for="timeApt">Time</label><br>
+                    <label for="timeApt"><span class="glyphicon glyphicon-time"></span> Time</label><br>
                     <select class="form-control" id = "timeApt" onchange="validateDropDown(this)">
                         <option value="-1">Please, select a time slot:</option>
-                        <option value="10">10:00-10:30</option>
-                        <option value="10.5">10:30-11:00</option>
-                        <option value="11">11:00-11:30</option>
-                        <option value="11.5">11:30-12:00</option>
-                        <option value="12">12:00-12:30</option>
-                        <option value="12.5">12:30-13:00</option>
-                        <option value="13">13:00-13:30</option>
-                        <option value="13.5">13:30-14:00</option>
-                        <option value="14">14:00-14:30</option>
-                        <option value="14.5">14:30-15:00</option>
-                        <option value="15">15:00-15:30</option>
-                        <option value="15.5">15:30-16:00</option>
-                        <option value="16">16:00-16:30</option>
-                        <option value="16.5">16:30-17:00</option>
-                        <option value="17">17:00-17:30</option>
-                        <option value="17.5">17:30-18:00</option>
-                        <option value="18">18:00-18:30</option>
-                        <option value="18.5">18:30-19:00</option>
+                        <option value="10:00-10:30">10:00-10:30</option>
+                        <option value="10:30-11:00">10:30-11:00</option>
+                        <option value="11:00-11:30">11:00-11:30</option>
+                        <option value="11:30-12:00">11:30-12:00</option>
+                        <option value="12:00-12:30">12:00-12:30</option>
+                        <option value="12:30-13:00">12:30-13:00</option>
+                        <option value="13:00-13:30">13:00-13:30</option>
+                        <option value="13:30-14:00">13:30-14:00</option>
+                        <option value="14:00-14:30">14:00-14:30</option>
+                        <option value="14:30-15:00">14:30-15:00</option>
+                        <option value="15:00-15:30">15:00-15:30</option>
+                        <option value="15:30-16:00">15:30-16:00</option>
+                        <option value="16:00-16:30">16:00-16:30</option>
+                        <option value="16:30-17:00">16:30-17:00</option>
+                        <option value="17:00-17:30">17:00-17:30</option>
+                        <option value="17:30-18:00">17:30-18:00</option>
+                        <option value="18:00-18:30">18:00-18:30</option>
+                        <option value="18:30-19:00">18:30-19:00</option>
                     </select><span id="timeAptInfo" class="incorrect-validation"></span>
                     
                 </div>
@@ -95,7 +102,7 @@
             <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10" style="margin-top: 1%">
-                    <label for="message">Give Us Some Details!</label><br>
+                    <label for="message"><span class="glyphicon glyphicon-comment"></span> Give Us Some Details!</label><br>
                     <textarea class="form-control" placeholder="What do you want us to fix?" id="message" rows="10" cols="30" onchange="validateComment(this)"></textarea><span id="commentInfo" class="incorrect-validation"></span>
                 </div>
                 <div class="col-lg-1"></div>
@@ -105,7 +112,7 @@
             <div class="row" style="margin-top: 1%">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <input type="button" class="btn btn-primary" value="Schedule My Appointment!" id="btnSchedule" onclick="createAptBtn()" style="background-color: rgb(189, 135, 48); border-color: rgb(189, 135, 48)"/>
+                    <input type="button" class="btn btn-vinko" value="Schedule My Appointment!" id="btnSchedule" onclick="createAptBtn()"/>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -115,10 +122,32 @@
         <div class="col-lg-5">
             <img src="https://seamssoeasy.ca/wp-content/uploads/2017/08/lady-sewing.jpg" class="img-fluid" alt="Clothing Alterations" style="width:90%; height:auto; margin-top: 12%; margin-right: 1%"/>
         </div>
-
     </div>
 
-       
+    <div class="row">
+        <div class="col-lg-7" id="upcomingAptParentDiv">
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10"><h3 class="headerSubpages">Upcoming Appointments</h3></div>
+                <div class="col-lg-1"></div>
+            </div>
+            <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-2"><span class="glyphicon glyphicon-calendar"></span> <b>Date</b></div>
+                <div class="col-lg-2"><span class="glyphicon glyphicon-time"></span> <b>Time</b></div>
+                <div class="col-lg-2"><span class="glyphicon glyphicon-menu-hamburger"></span> <b>Product Category</b></div>
+                <div class="col-lg-4"><span class="glyphicon glyphicon-comment"></span> <b>Message</b></div>
+                <div class="col-lg-1"></div>
+            </div>
+            <div class="row" id="upcomingAptDefaultEntry" style="margin-top: 1%">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10"><b>- There are no upcoming appointment stored -</b></div>
+                <div class="col-lg-1"></div>
+            </div>
+        </div>
+        <div class="col-lg-5"></div>
+    </div>
+
     <script src="./js/models/User.js"></script>
     <script src="./js/models/Address.js"></script>
     <script src="./js/models/Appointment.js"></script>

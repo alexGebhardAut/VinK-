@@ -1,3 +1,18 @@
+.btn-vinko{
+    background-color: rgb(189, 135, 48);
+    border-color: rgb(189, 135, 48);
+    color: white;
+}
+
+.headerSubpages{
+    color: rgb(189, 135, 48);
+}
+
+.socialMediaIcon{
+    font-size: 75px;
+    color:rgb(189, 135, 48);
+}
+
 .incorrect-validation{
     color: red;
 }
@@ -14,11 +29,6 @@
 .closeStyle{
     font-weight: bold;
     color: red;
-}
-
-#headerLine{
-    background-color: peachpuff;
-    padding: 0.4%;
 }
 
 #message{

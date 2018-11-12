@@ -3,11 +3,10 @@
 function requiredField(fieldsArray) {
     var check = true;
     for(var i = 0; i < fieldsArray.length; i++) {
-        if (fieldsArray[i].value.length === 0){
+        if (fieldsArray[i].value.length === 0)
             check = showErrorValidation(fieldsArray[i], "Please fill out", "info" + fieldsArray[i].getAttribute("id").charAt(0).toUpperCase() + fieldsArray[i].getAttribute("id").slice(1));
-        }else{
+        else
             removeErrorValidation(fieldsArray[i], "info" + fieldsArray[i].getAttribute("id").charAt(0).toUpperCase() + fieldsArray[i].getAttribute("id").slice(1));
-        }
     }
     return check;
 }
@@ -33,9 +32,7 @@ function validatePW(element) {
 
 // Validate if both password inputs are equal
 function matchPW() {
-    var messageId = "infoRptPassword";
-    var password = document.getElementById("password");
-    var passwordRpt = document.getElementById("rptPassword");
+    var messageId = "infoRptPassword", password = document.getElementById("password"), passwordRpt = document.getElementById("rptPassword");
     if(passwordRpt.value.length === 0)
         return removeErrorValidation(passwordRpt, messageId);
     else if (password.value !== passwordRpt.value)
@@ -65,6 +62,7 @@ function validateDob(element) {
         return removeErrorValidation(element, messageId);
 }
 
+//Validate if the reCaptcha checkbox is selected
 function validateReCaptcha(element){
     if(element.value.length === 0){
         document.getElementsByTagName('iframe')[0].setAttribute('class', document.getElementsByTagName('iframe')[0].getAttribute('class') + " errorValidation");
@@ -73,19 +71,14 @@ function validateReCaptcha(element){
     return true;
 }
 
-function removeErrorValClass(actualClassName){
-    if(actualClassName.includes(" errorValidation")){
-        return actualClassName.substr(0, actualClassName.length-16);
-    }
-    return actualClassName;
-}
-
+//Call the dialog with the a given message - set inner html of body with the message and open the dialog model with the provided jQuery statement
 function callDialog(message){
-    console.log(message === null);
     document.getElementById("alertModelBodyRegistration").innerHTML = message;
     $('#alertModel').modal();
 }
 
+//to show error validation (red text beneath the input field and a red border around the input field, we add a new class called errorValidation to the class attribute
+//if the class errorValidation is has already added to the element, then we skip this step, therefore we need the if statement
 function showErrorValidation(element, text, messageId){
     if(element.getAttribute("class").includes(" errorValidation") === false) {
         element.setAttribute("class", element.getAttribute("class") + " errorValidation");
@@ -94,8 +87,13 @@ function showErrorValidation(element, text, messageId){
     return false;
 }
 
+//remove the error validation class from the element
 function removeErrorValidation(element, messageId){
-    element.setAttribute("class", removeErrorValClass(element.getAttribute("class")));
+    var actualClassName = element.getAttribute("class");
+    if(actualClassName.includes(" errorValidation")){
+        actualClassName = actualClassName.substr(0, actualClassName.length-16);
+    }
+    element.setAttribute("class", actualClassName);
     document.getElementById(messageId).innerHTML = "";
     return true;
 }

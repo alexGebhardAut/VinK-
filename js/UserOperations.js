@@ -1,14 +1,6 @@
-// Create an empty array userData that stores all the properties of the users
-var userData = [
-    new User("Alexander","Gebhard","alexander.gebhard@sbg.at","21/03/1993","+436641279352","alexander",
-        new Address("Emdrupvej 24","1., 2.", "Copenhagen", "Osterbro", "2100", "Denmark"),
-        false),
-    new User("Jakub", "Wejskrab", "j.wejski@me.com", "22/02/1996", "+4550180070", "emdrupvej",
-        new Address("Emdrupvej 24", "1., 2.", "Copenhagen", "Osterbro", "2100", "Denmark"),
-        false)
-];
-
+var userData = JSON.parse(localStorage.getItem("userData"));
 var user = JSON.parse(localStorage.getItem("user"));
+
 var divColHeaderSignUp = document.getElementById("signUpOrUserDiv");
 var divColHeaderLogin = document.getElementById("logInOrOutDiv");
 var divColHeaderUser = document.getElementById("userNameDiv");
@@ -96,6 +88,7 @@ function signUpButton() {
             );
         // A new variable user is created and is pushed into the array userData
         userData.push(user);
+        localStorage.setItem("userData", JSON.stringify(userData));
         callDialog("Congratulations, you have become a member! Please log in on the main page");
     }
 }
@@ -119,14 +112,21 @@ function uniqueEmail(email) {
     return true;
 }
 
-/*  The login button has the following functions:
-        First, we check if the email and password fields are filled out
-        Then we check if the given email address is already stored in our system
-            If we did not find an email address, "the given user is not registered" will be displayed
-            If we find a stored email address, we check the corresponding password 
-        If the password matches the corresponding account, the login is correct
-        If the password is incorrect, the message "something went wrong" will be displayed
-    All the outputs are displayed in the form of an alert */ 
+/* The login button has the following functions:
+   First, we check if the email and password fields are filled out. If both or one of them is missing, the loginAlertMessage will be displayed
+   If everything is correct, we request the user object from our list by mail and password. if we get a null, then we know that the given mail address
+   is not stored (the user is not registered) or the mail-password combination is not correct.
+   If we found a user, it means that the user is stored and the combination is correct.
+   Then we store this user in the local storage to mark this user as logged in.
+   If the user has checked the checkbox, we create a new Date object which represents the actual datetime and increase the day by 1.
+   This represents our expire time.
+   with document.cookie we create a cookie with the key user and the mail address as value. the expires attribute is the actual datetime + 1 day.
+   that means our cookie expires after 24 hours.
+
+   User behaviour: When a user checks the box, logs in and close the browser, the cookie will be exist until the expire datetime. If the user visits the website
+   for example 5 hours later, he/she will be still logged in. If the user visits the website 2 days later, the cookie doesn't exist anymore, the user has to log in again.
+   The functionality of this is implemented in the window.onload function in the Data.js file.
+*/
 function loginButton() {
     var fields = [document.getElementById("email"), document.getElementById("password")];
     if (fields[0].value.length === 0 || fields[1].value.length === 0){
@@ -137,37 +137,52 @@ function loginButton() {
             showLoginAlertMessage("Something went wrong.");
         } else {
             localStorage.setItem("user", JSON.stringify(foundedUser));
+            if(document.getElementById("rememberme").checked){
+                var now = new Date();
+                now.setDate(now.getDate()+1);
+                document.cookie = "user=" + fields[0].value + ";expires=" + now.toUTCString() + ";";
+            }
             window.location.href = "Index.html";
         }
     }
 }
 
+//returns a user object founded by mail and password. the loop goes through the whole lost of users and one user after the other if the given and actual loop mail address
+//match. if we've found a match, then the stored password in the founded user object will be compared with the entered password. are mail and password correct,
+//the function returns the founded user object. if something is wrong, the function returns null
 function getUserByEmailPw(fields) {
     for (var i = 0; i < userData.length; i++) {
-        if (fields[0].value === userData[i].email) {
-            if (fields[1].value === userData[i].password)
+        if (fields[0].value === userData[i]._email) {
+            if (fields[1].value === userData[i]._password)
                 return userData[i];
+            else
+                break;
         }
     }
     return null;
 }
 
+//gives the login message div the bootstrap class alert-danger and displays the output within this div
 function showLoginAlertMessage(output){
     document.getElementById("loginMessage").setAttribute("class","alert alert-danger");
     document.getElementById("loginMessage").innerHTML = output;
 }
 
+//remove the user from the local storage, expire the cookie and redirect the user back to the landing page
 function logout(){
     localStorage.removeItem("user");
+    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     window.location.href = "Index.html";
 }
 
+//after the user has entered the email and password, it will submit with an enter key
 $('#password').keypress(function(e) {
     if (e.which === 13) {
         loginButton();
     }
 });
 
+//validate if the agreement checkbox is checked. if not, then the class validErroragreement will be added to color the box and text red
 function validateAgreement(element){
     var agrElem = document.getElementById("agrCheckMarkSpan");
     var agrSpanElem = document.getElementById("agrLabelContainer");

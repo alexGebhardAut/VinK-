@@ -5,38 +5,6 @@ class OpeningHour{
         this._open = open;
         this._close = close;
     }
-
-    get dayName() {
-        return this._dayName;
-    }
-
-    set dayName(value) {
-        this._dayName = value;
-    }
-
-    get dayNo() {
-        return this._dayNo;
-    }
-
-    set dayNo(value) {
-        this._dayNo = value;
-    }
-
-    get open() {
-        return this._open;
-    }
-
-    set open(value) {
-        this._open = value;
-    }
-
-    get close() {
-        return this._close;
-    }
-
-    set close(value) {
-        this._close = value;
-    }
 }
 
 function showOpeningHours(){
@@ -48,26 +16,26 @@ function showOpeningHours(){
                          new OpeningHour("Sunday", 0, 10, 19) ];
 
     for(var i=0; i<openingHours.length; i++){
-        var divElementParent = document.getElementById("oh"+openingHours[i].dayName);
+        var divElementParent = document.getElementById("oh"+openingHours[i]._dayName);
         var divElementDayName = document.createElement("div");
         divElementDayName.setAttribute("class","col-lg-1");
-        divElementDayName.innerText = openingHours[i].dayName;
+        divElementDayName.innerText = openingHours[i]._dayName;
         divElementParent.appendChild(divElementDayName);
 
         var divElementOpeningHours = document.createElement("div");
         divElementOpeningHours.setAttribute("class","col-lg-1");
-        divElementOpeningHours.innerText = openingHours[i].open + ":00 - " + openingHours[i].close + ":00";
+        divElementOpeningHours.innerText = openingHours[i]._open + ":00 - " + openingHours[i]._close + ":00";
         divElementParent.appendChild(divElementOpeningHours);
 
-        if(openingHours[i].dayNo === actualDateTime.getDay()){
+        if(openingHours[i]._dayNo === actualDateTime.getDay()){
             selectedOpeningHour = openingHours[i];
         }
     }
 
     if(selectedOpeningHour !== null){
-        var trElem = document.getElementById("oh"+selectedOpeningHour.dayName);
+        var trElem = document.getElementById("oh"+selectedOpeningHour._dayName);
         var icon = document.getElementById("openingHourIcon");
-        if(actualDateTime.getHours() >= selectedOpeningHour.open && actualDateTime.getHours() < selectedOpeningHour.close){
+        if(actualDateTime.getHours() >= selectedOpeningHour._open && actualDateTime.getHours() < selectedOpeningHour._close){
             trElem.setAttribute("class", trElem.getAttribute("class") + " openStyle");
             icon.setAttribute("class", icon.getAttribute("class") + " openStyle");
         }else{
