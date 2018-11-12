@@ -95,3 +95,8 @@
     background-color: indianred;!important;
     border: solid 0.5px red; !important;
 }
+
+/* Colour of the star rating in review section*/ 
+.checked {
+    color: orange;
+}
