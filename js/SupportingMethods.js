@@ -34,7 +34,7 @@ function validatePW(element) {
 function matchPW() {
     var messageId = "infoRptPassword", password = document.getElementById("password"), passwordRpt = document.getElementById("rptPassword");
     if(passwordRpt.value.length === 0)
-        return removeErrorValidation(passwordRpt, messageId);
+        return showErrorValidation(passwordRpt, "Passwords are not equal", messageId);
     else if (password.value !== passwordRpt.value)
         return showErrorValidation(passwordRpt, "Passwords are not equal", messageId);
     else
