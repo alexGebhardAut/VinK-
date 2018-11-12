@@ -30,7 +30,7 @@
                 <div class="row">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-8"><h1 class="headerSubpages">Review Section</h1></div>
-                        <div class="col-lg-2" style="padding-top: 2.5%; padding-left: 2.45%"><input type="button" class="btn btn-vinko" id="btnCreateReview" value="Write Review" onclick="reviewButton()"/></div>
+                        <div class="col-lg-2" style="padding-top: 2.5%; padding-left: 2.45%"><input type="button" class="btn btn-vinko" id="btnCreateReview" value="Write Review" data-toggle="modal" data-target="#alertModelReview"/></div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div style="height: 650px; overflow-y: auto;">
@@ -284,6 +284,66 @@
         <div class="col-lg-5" style="padding-top:1.5%"><img src="./img/review.jpeg" alt="" style="height: auto;width: 90%"></div>
     </div>
     
+    <div class="modal fade" id="alertModelReview" tabindex="-1" role="dialog" aria-labelledby="alertModalReviewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-5">
+                            <h5 class="modal-title" id="alertModalReviewLabel" style="margin-top:3%"><b>Add Review</b></h5>
+                        </div>
+                        <div class="col-lg-5">
+                            <img src="img/VinKo.png" alt="Vinko Logo" style="width:75%" align="right"/>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+                <div id="alertModelBodyReview" class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-7">
+                            <label for="title"><b>Title</b></label>
+                            <input class="form-control" type="text" placeholder="Title" id="title"/><br>
+                        </div>
+                        <div class="col-lg-3" align="right" style="padding-top:5.4%">
+                            <span class="fa fa-star fa-lg"></span>
+                            <span class="fa fa-star fa-lg"></span>
+                            <span class="fa fa-star fa-lg"></span>
+                            <span class="fa fa-star fa-lg"></span>
+                            <span class="fa fa-star fa-lg"></span>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <label for="contentReview"><b>Comment</b></label>
+                            <textarea class="form-control" placeholder="Tell us what you think about VinKø" rows="7" cols="15" onchange="validateComment(this)"></textarea>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row" style="margin-top: 3%">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <button type="button" class="btn btn-block btn-vinko" id="btnAddReview" onclick="addReview()">Post Review</button>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                    <div class="row" style="margin-top: 3%">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-10">
+                            <div id="addReviewMessage" align="center" role="alert">
+                            </div>
+                        </div>
+                        <div class="col-lg-1"></div>
+                    </div>
+                </div>
+                <!--<div class="modal-footer row">
+                </div>-->
+            </div>
+        </div>
+    </div>
 
     <script src="./js/models/Address.js"></script>
     <script src="./js/models/User.js"></script>
