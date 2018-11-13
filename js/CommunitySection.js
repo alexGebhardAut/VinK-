@@ -1,10 +1,68 @@
-var reviewData = [];
-var user1 = new User("Jakub", "Wejskrab", "j.wejski@me.com", "22/02/1996", "+4550180070", "emdrupvej", new Address("Emdrupvej 24", "1., 2.", "", "", "", ""), false);
-var user2 = new User("Alex", "Gebhard", "alex@sbg.at", "22/02/1996", "+4550180070", "emdrupvej", new Address("Emdrupvej 24", "1., 2.", "", "", "", ""), false);
-var user3 = new User("Party", "Man", "anything@at.com", "22/02/1996", "+4550180070", "emdrupvej", new Address("Emdrupvej 24", "1., 2.", "", "", "", ""), false);
-var user4 = new User("Sarah", "Mohammad", "anywhere@adfg.at", "22/02/1996", "+4550180070", "emdrupvej", new Address("Emdrupvej 24", "1., 2.", "", "", "", ""), false);
+var reviewData = JSON.parse(localStorage.getItem("reviewData"));
+var user = JSON.parse(localStorage.getItem("user"));
+var chosenRating = -1;
 
-function reviewButton() {
-    
+if (reviewData === null) {
+    reviewData = []
+}
 
+if(user === null) {
+    document.getElementById("btnCreateReview").disabled = true;
+}
+
+function addReviewButton() {
+    var title = document.getElementById("title");
+    var content = document.getElementById("contentReview");
+
+    if (title.value.length === 0 || content.value.length === 0) {
+        showReviewAlertMessage("Please fill the form out");
+    }else if(chosenRating === -1){
+        showReviewAlertMessage("Please rate us");
+    }
+    else {
+        var customerReview = new CustomerReview (
+            title.value,
+            new Date(), 
+            user,
+            chosenRating,
+            content.value
+        );
+
+        reviewData.push(customerReview);
+        console.log(reviewData);
+        removeReviewAlertMessage();
+        $(function(){
+            $('#alertModelReview').modal('toggle');
+        })
+    }
+}
+
+function starRating(position) {
+    if(position === -1){
+        for (var i = 1; i <= 5; i++) {
+            var actualClassName = document.getElementById("star" + i).getAttribute("class");
+            if(actualClassName.includes(" starSelected")){
+                document.getElementById("star" + i).setAttribute("class", actualClassName.substring(0, actualClassName.length-12));
+            }
+        }
+    }else{
+        for (var i = 1; i <= position; i++) {
+            document.getElementById("star" + i).setAttribute("class", document.getElementById("star" + i).getAttribute("class")+ " starSelected");
+        }
+    }
+}
+
+function chooseRating(position) {
+    starRating(position);
+    chosenRating = position;
+}
+
+function showReviewAlertMessage(message) {
+    document.getElementById("addReviewMessage").setAttribute("class","alert alert-danger");
+    document.getElementById("addReviewMessage").innerHTML = message;
+}
+
+function removeReviewAlertMessage() {
+    document.getElementById("addReviewMessage").setAttribute("class","");
+    document.getElementById("addReviewMessage").innerHTML = "";
 }

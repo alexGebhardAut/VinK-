@@ -307,11 +307,11 @@
                             <input class="form-control" type="text" placeholder="Title" id="title"/><br>
                         </div>
                         <div class="col-lg-3" align="right" style="padding-top:5.4%">
-                            <span class="fa fa-star fa-lg"></span>
-                            <span class="fa fa-star fa-lg"></span>
-                            <span class="fa fa-star fa-lg"></span>
-                            <span class="fa fa-star fa-lg"></span>
-                            <span class="fa fa-star fa-lg"></span>
+                            <span id="star1" class="fa fa-star fa-lg" onmouseover="starRating(1)" onmouseout="starRating(-1)" onclick="chooseRating(1)"></span>
+                            <span id="star2" class="fa fa-star fa-lg" onmouseover="starRating(2)" onmouseout="starRating(-1)" onclick="chooseRating(2)"></span>
+                            <span id="star3" class="fa fa-star fa-lg" onmouseover="starRating(3)" onmouseout="starRating(-1)" onclick="chooseRating(3)"></span>
+                            <span id="star4" class="fa fa-star fa-lg" onmouseover="starRating(4)" onmouseout="starRating(-1)" onclick="chooseRating(4)"></span>
+                            <span id="star5" class="fa fa-star fa-lg" onmouseover="starRating(5)" onmouseout="starRating(-1)" onclick="chooseRating(5)"></span>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -319,14 +319,14 @@
                         <div class="col-lg-1"></div>
                         <div class="col-lg-10">
                             <label for="contentReview"><b>Comment</b></label>
-                            <textarea class="form-control" placeholder="Tell us what you think about VinKø" rows="7" cols="15" onchange="validateComment(this)"></textarea>
+                            <textarea id= "contentReview" class="form-control" placeholder="Tell us what you think about VinKø" rows="7" cols="15"></textarea>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="row" style="margin-top: 3%">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-10">
-                            <button type="button" class="btn btn-block btn-vinko" id="btnAddReview" onclick="addReview()">Post Review</button>
+                            <button type="button" class="btn btn-block btn-vinko" id="btnAddReview" onclick="addReviewButton()">Post Review</button>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
