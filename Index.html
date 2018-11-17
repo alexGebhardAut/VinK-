@@ -26,48 +26,186 @@
     <header class="masthead">
         <div class="container">
             <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Our Studio!</div>
-                <div class="intro-heading text-uppercase">It's Nice To Meet You</div>
+                <div class="intro-lead-in"><!-- Text here --></div>
+                <div class="intro-heading text-uppercase"><!-- Text here --></div>
             </div>
         </div>
     </header>
-    <div class="row">
-        <div class="col-lg-8" ></div>
+
+    <div class="row" style="margin-top:2%; margin-bottom: 3%">
+        <div class="col-lg-7" ></div>
         <div class="col-lg-2" align="right" id="userNameDiv"></div>
-        <div class="col-lg-1" id="signUpOrUserDiv">
+        <div class="col-lg-1" align="center">
+            <a class="btn btn-vinko btn-fixed-length" href="Reviews.html">Reviews</a>
+        </div>
+        <div class="col-lg-1" align="center" id="signUpOrUserDiv">
             <!-- <a class="btn btn-primary" href="Registration.html">Sign up</a> -->
         </div>
-        <div class="col-lg-1" align="left" id="logInOrOutDiv">
+        <div class="col-lg-1" align="center" id="logInOrOutDiv">
             <!--<button type="button" class="btn btn-success" data-toggle="modal" data-target="#alertModelLogin">Login</button>-->
         </div>
     </div>
 
-    <!-- Google Maps Integration -->
-    <div class="mapouter">
-        <div class="gmap_canvas">
-            <iframe width="522" height="378" id="gmap_canvas" src="https://maps.google.com/maps?q=Emdrupvej%2024&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-            </iframe>
-            <a href="https://www.pureblack.de">pureblack.de</a>
+    <div class="container" style="margin-bottom: 5%">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="headerSubpages">Services</h2>
+            </div>
         </div>
-        <style>.mapouter{text-align:right;height:378px;width:522px;}.gmap_canvas {overflow:hidden;background:none!important;height:378px;width:522px;}</style>
-    </div><br>
+        <div class="row text-center">
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary headerSubpages"></i>
+              <i class="fa fa-cut fa-stack-1x fa-inverse"></i>
+            </span>
+                <h4 class="service-heading">Repairing</h4>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+            </div>
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary headerSubpages"></i>
+              <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+            </span>
+                <h4 class="service-heading">Selling</h4>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+            </div>
+            <div class="col-md-4">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary headerSubpages"></i>
+              <i class="fa fa-comments fa-stack-1x fa-inverse"></i>
+            </span>
+                <h4 class="service-heading">Community</h4>
+                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
+            </div>
+        </div>
+    </div>
 
-    <!--
-        Opening hours with Clock Icon
-        Glyphicon icons are always in a span with the class "glyphicon glyphicon-[nameOfTheIcon]"
-        The set id is for the javascript interaction
-        The opening hours itself are stored in a Bootstrap HTML row column construct
-        the parent elements with the id "oh[dayName]" will be selected in the JS code and the child elements with dayname and opening hours will be generated dynamically
-     -->
+    <hr>
 
-    <h3 class="headerSubpages">Opening Hours <span id="openingHourIcon" class="glyphicon glyphicon-time"></span></h3>
-    <div class="row" id="ohMonday">     </div>
-    <div class="row" id="ohTuesday">    </div>
-    <div class="row" id="ohWednesday">  </div>
-    <div class="row" id="ohThursday">   </div>
-    <div class="row" id="ohFriday">     </div>
-    <div class="row" id="ohSaturday">   </div>
-    <div class="row" id="ohSunday">     </div>
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-5" align="center">
+            <h2 class="headerSubpages" style="padding-right: 56%;">Location</h2>
+            <!-- Google Maps Integration -->
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <iframe width="522" height="300" id="gmap_canvas" src="https://maps.google.com/maps?q=Emdrupvej%2024&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+                    </iframe>
+                    <a href="https://www.pureblack.de">pureblack.de</a>
+                </div>
+                <style>.mapouter{text-align:right;height:378px;width:522px;}.gmap_canvas {overflow:hidden;background:none!important;height:378px;width:522px;}</style>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <!--
+                Opening hours with Clock Icon
+                Glyphicon icons are always in a span with the class "glyphicon glyphicon-[nameOfTheIcon]"
+                The set id is for the javascript interaction
+                The opening hours itself are stored in a Bootstrap HTML row column construct
+                the parent elements with the id "oh[dayName]" will be selected in the JS code and the child elements with dayname and opening hours will be generated dynamically
+             -->
+            <div class="row" style="margin-bottom: 5%;">
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4"><h2 class="headerSubpages">Opening Hours</h2></div>
+                <div class="col-lg-4"><div id="openClosedSign" align="center"></div></div>
+                <div class="col-lg-2"></div>
+            </div>
+            <div class="row" id="ohMonday">     </div>
+            <div class="row" id="ohTuesday">    </div>
+            <div class="row" id="ohWednesday">  </div>
+            <div class="row" id="ohThursday">   </div>
+            <div class="row" id="ohFriday">     </div>
+            <div class="row" id="ohSaturday">   </div>
+            <div class="row" id="ohSunday">     </div>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="headerSubpages">Our Team</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="./img/sarah.PNG" alt="" style="border-radius: 50%;">
+                    <h4>Sarah Mohammad</h4>
+                    <p class="text-muted">Position 1</p>
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/saarofficial/?hl=en">
+                                <i class="fa fa-instagram fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/SaarOfficial1">
+                                <i class="fa fa-facebook-f fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.linkedin.com/in/sarahmohammad/">
+                                <i class="fa fa-linkedin fa-lg"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="./img/jakub.JPG" alt="" style="border-radius: 50%;">
+                    <h4>Jakub Wejskrab</h4>
+                    <p class="text-muted">Position 2</p>
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/wejski/?hl=en">
+                                <i class="fa fa-instagram fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/jwejskrab">
+                                <i class="fa fa-facebook-f fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.linkedin.com/in/jakub-wejskrab/">
+                                <i class="fa fa-linkedin fa-lg"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="team-member">
+                    <img class="mx-auto rounded-circle" src="./img/alex.JPG" alt="" style="border-radius: 50%;">
+                    <h4>Alexander Gebhard</h4>
+                    <p class="text-muted">Position 3</p>
+                    <ul class="list-inline social-buttons">
+                        <li class="list-inline-item">
+                            <a href="https://www.instagram.com/alex.gebhard/?hl=en">
+                                <i class="fa fa-instagram fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="https://www.facebook.com/alex.gebhard">
+                                <i class="fa fa-facebook-f fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="www.linkedin.com/in/alexander-gebhard-511745b2">
+                                <i class="fa fa-linkedin fa-lg"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12"></div>
+        </div>
+    </div>
 
 
     <!--
@@ -80,32 +218,36 @@
     <div style="padding-top: 1%; padding-bottom: 3%; background-color: rgb(189, 135, 48, 0.5);">
         <div class="row">
             <div class="col-lg-3"></div>
-            <div class="col-lg-6">
+            <div class="col-lg-3">
                 <h2 style="color:white">Get informed</h2>
             </div>
+            <div class="col-lg-3" align="right" id="nwlSuccessMessage"></div>
             <div class="col-lg-3"></div>
         </div>
         <div class="row">
             <div class="col-lg-3"></div>
             <div class="col-lg-3">
-                <input type="text" id="nwlFirstname" class="form-control" placeholder="Firstname">
+                <input type="text" id="firstname" class="requiredField form-control" placeholder="Firstname">
+                <span class="incorrect-validation" id = "infoFirstname"></span>
             </div>
             <div class="col-lg-3">
-                <input type="text" id="nwlLastname" class="form-control" placeholder="Lastname">
+                <input type="text" id="lastname" class="requiredField form-control" placeholder="Lastname">
+                <span class="incorrect-validation" id = "infoLastname"></span>
             </div>
             <div class="col-lg-3"></div>
         </div>
         <div class="row" style="margin-top: 1%">
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
-                <input type="text" id="nwlEmail" class="form-control" placeholder="Email">
+                <input type="text" id="email" class="requiredField form-control" placeholder="Email">
+                <span class="incorrect-validation" id = "infoEmail"></span>
             </div>
             <div class="col-lg-3"></div>
         </div>
         <div class="row" style="margin-top:1%">
             <div class="col-lg-3"></div>
             <div class="col-lg-6">
-                <input type="button" id="nwlSubmitBtn" class="btn btn-vinko btn-block" value="Subscribe">
+                <input type="button" id="nwlSubmitBtn" class="btn btn-vinko btn-block" value="Subscribe" onclick="btnSubscribeNwl()">
             </div>
             <div class="col-lg-3"></div>
         </div>
@@ -200,7 +342,7 @@
                         <div class="col-lg-10">
                             <!-- Email -->
                             <label for="email"><b>Email</b></label>
-                            <input class="form-control" type="text" placeholder="Email" id="email"/><br>
+                            <input class="form-control" type="text" placeholder="Email" id="emailLogin"/><br>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -208,10 +350,10 @@
                         <div class="col-lg-1"></div>
                         <div class="col-lg-10">
                             <!-- Password -->
-                            <label for="password"><b>Password</b></label>
+                            <label for="passwordLogin"><b>Password</b></label>
                             <div class='input-group'>
-                                <input class="form-control" type="password" placeholder="Password" id="password"/>
-                                <span class="input-group-addon" id="showPw" onmousedown="showPwFuncDown()" onmouseup="showPwFuncUp()">
+                                <input class="form-control" type="password" placeholder="Password" id="passwordLogin"/>
+                                <span class="input-group-addon" id="showPw" onmousedown="showPw(true)" onmouseup="showPw(false)">
                                     <span class="glyphicon glyphicon-eye-open"></span>
                                 </span>
                             </div>
@@ -220,21 +362,17 @@
                     </div>
                     <div class="row" style="margin-top: 3%">
                         <div class="col-lg-1"></div>
-                        <div class="col-lg-5">
+                        <div class="col-lg-10" align="left">
                             <!-- Remember me checkbox -->
                             <label for="rememberme">Remember me?</label>
                             <input type="checkbox" id="rememberme" checked/>
-                        </div>
-                        <div class="col-lg-5" align="right">
-                            <!-- Forgot my password link -->
-                            <a href="#" id="linkForgotPw">Forgot my password</a>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
                     <div class="row" style="margin-top: 3%">
                         <div class="col-lg-1"></div>
                         <div class="col-lg-10">
-                            <button type="button" class="btn btn-block btn-vinko" id="btnLogin" onclick="loginButton()">Login</button>
+                            <button type="button" class="btn btn-block btn-vinko" id="btnLogin" onclick="btnLoginUser()">Login</button>
                         </div>
                         <div class="col-lg-1"></div>
                     </div>
@@ -252,13 +390,11 @@
             </div>
         </div>
     </div>
-    <script src="./js/models/OpeningHour.js"></script>
-    <script src="./js/models/User.js"></script>
-    <script src="./js/models/Address.js"></script>
-    <script src="./js/models/Appointment.js"></script>
+    <script src="./js/Classes.js"></script>
     <script src="./js/Data.js"></script>
-    <script src="./js/SupportingMethods.js"></script>
-    <script src="./js/UserOperations.js"></script>
+    <script src="./js/GeneralFunctions.js"></script>
+    <script src="./js/User.js"></script>
+    <script src="./js/Lead.js"></script>
     <script type="application/javascript">
         showOpeningHours();
     </script>

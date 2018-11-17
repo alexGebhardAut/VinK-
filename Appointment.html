@@ -47,7 +47,7 @@
                     <span id="userEmail"></span></div>
                 <div class="col-lg-5">
                     <label for="productCategory"><span class="glyphicon glyphicon-menu-hamburger"></span> Product Category</label><br>
-                    <select class="form-control" id = "productCategory" onchange="validateDropDown(this)">
+                    <select class="form-control" id = "productCategory" onchange="isDropDownChoiceValid(this)">
                         <option value="-1">Please, select one of the following options:</option>
                         <option value="Dress">Dress</option>
                         <option value="Sweater">Sweater</option>
@@ -68,11 +68,11 @@
                 <div class="col-lg-1"></div>
                 <div class="col-lg-5">
                     <label for="dateApt"><span class="glyphicon glyphicon-calendar"></span> Date</label><br>
-                    <input class="form-control" type="date" id="dateApt" onchange="validateDateApt(this)"/><span id="dateAptInfo" class="incorrect-validation"></span>
+                    <input class="form-control" type="date" id="dateApt" onchange="isAptDateValid(this)"/><span id="dateAptInfo" class="incorrect-validation"></span>
                 </div>
                 <div class="col-lg-5">
                     <label for="timeApt"><span class="glyphicon glyphicon-time"></span> Time</label><br>
-                    <select class="form-control" id = "timeApt" onchange="validateDropDown(this)">
+                    <select class="form-control" id = "timeApt" onchange="isDropDownChoiceValid(this)">
                         <option value="-1">Please, select a time slot:</option>
                         <option value="10:00-10:30">10:00-10:30</option>
                         <option value="10:30-11:00">10:30-11:00</option>
@@ -103,7 +103,7 @@
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10" style="margin-top: 1%">
                     <label for="message"><span class="glyphicon glyphicon-comment"></span> Give Us Some Details!</label><br>
-                    <textarea class="form-control" placeholder="What do you want us to fix?" id="message" rows="10" cols="30" onchange="validateComment(this)"></textarea><span id="commentInfo" class="incorrect-validation"></span>
+                    <textarea class="form-control" placeholder="What do you want us to fix?" id="message" rows="10" cols="30" onchange="isCommentValid(this)"></textarea><span id="commentInfo" class="incorrect-validation"></span>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -112,7 +112,7 @@
             <div class="row" style="margin-top: 1%">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                    <input type="button" class="btn btn-vinko" value="Schedule My Appointment!" id="btnSchedule" onclick="createAptBtn()"/>
+                    <input type="button" class="btn btn-vinko" value="Schedule My Appointment!" id="btnSchedule" onclick="btnCreateAppointment()"/>
                 </div>
                 <div class="col-lg-1"></div>
             </div>
@@ -147,11 +147,8 @@
         </div>
         <div class="col-lg-5"></div>
     </div>
-
-    <script src="./js/models/User.js"></script>
-    <script src="./js/models/Address.js"></script>
-    <script src="./js/models/Appointment.js"></script>
-    <script src="./js/SupportingMethods.js"></script>
-    <script src="./js/CreateAppointment.js"></script>
+    <script src="js/Classes.js"></script>
+    <script src="js/GeneralFunctions.js"></script>
+    <script src="js/Appointment.js"></script>
 </body>
 </html>

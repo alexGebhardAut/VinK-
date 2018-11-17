@@ -156,3 +156,73 @@ header.masthead .intro-text .intro-heading {
 .starSelected {
     color:  rgb(189, 135, 48);
 }
+
+#nwlSuccessMessage{
+    color: green;
+    font-size: medium;
+    margin-top: 1.5%;
+    padding-right: 1%;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.reviewCard{
+    margin-bottom: 2%;
+}
+
+.reviewTitle{
+    font-size: x-large;
+}
+
+.reviewUserTime{
+    margin-top: 1%;
+}
+
+.reviewDivider{
+    margin-left: 8.5%;
+    margin-right: 8.5%;
+    border-top: 1px solid black;
+}
+
+.reviewStars{
+    padding-top: 1%;
+}
+
+#openClosedSign{
+    background-color: green;
+    width: 63%;
+    padding: 0.5% 0.5% 0.5% 0.5%;
+    color: white;
+    border-radius: 25px;
+    line-height: 250%;
+    margin-top: 8%;
+}
+
+.openingHoursStyle{
+    font-size: x-large;
+}
+
+.btn-fixed-length{
+    width: 110px;
+}
+
+.team-member {
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.team-member img {
+    width: 225px;
+    height: 225px;
+    border: 7px solid #fff;
+}
+
+.team-member h4 {
+    margin-top: 25px;
+    margin-bottom: 0;
+    text-transform: none;
+}
+
+.team-member p {
+    margin-top: 0;
+}

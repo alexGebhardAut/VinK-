@@ -1,7 +1,7 @@
 //get all stored appointments from the system from the local storage
-var appointmentData = JSON.parse(localStorage.getItem("appointmentData"));
+var appointmentData = getAppointmentObjectArray(JSON.parse(localStorage.getItem("appointmentData")));
 //get the object of the logged in user from the local storage
-var user = JSON.parse(localStorage.getItem("user"));
+var user = getUserObject(JSON.parse(localStorage.getItem("user")));
 
 //if no user is logged in, e.g. a visitor visits the appointment sub page via entering the url and not via the forwarded link on the index page,
 //then the system displays an alert to inform the visitor to log in and he or she will be redirected back to the landing page automatically
@@ -10,8 +10,8 @@ if(user === null){
     alert("Your are not logged in. Please go back to the main page and log in");
     window.location.href = "Index.html";
 }else {
-    document.getElementById("username").innerHTML = user._firstname + " " + user._lastname;
-    document.getElementById("userEmail").innerHTML = user._email;
+    document.getElementById("username").innerHTML = user.getFullName();
+    document.getElementById("userEmail").innerHTML = user.email;
     displayUpcomingAppointments();
 }
 
@@ -39,10 +39,10 @@ function createRowElement(appointment){
     rowElem.setAttribute("class", "row");
     rowElem.setAttribute("style", "margin-top:1%");
     rowElem.innerHTML = "<div class='col-lg-1'></div>" +
-        "<div class='col-lg-2'>" + new Date(appointment._date).toDateString() + "</div>" +
-        "<div class='col-lg-2'>" + appointment._time + "</div>" +
-        "<div class='col-lg-2'>" + appointment._productCategory + "</div>" +
-        "<div class='col-lg-4'>" + appointment._comment + "</div>" +
+        "<div class='col-lg-2'>" + appointment.date.toDateString() + "</div>" +
+        "<div class='col-lg-2'>" + appointment.time + "</div>" +
+        "<div class='col-lg-2'>" + appointment.productCategory + "</div>" +
+        "<div class='col-lg-4'>" + appointment.comment + "</div>" +
         "<div class='col-lg-1'></div>";
     return rowElem;
 }
@@ -52,7 +52,7 @@ function createRowElement(appointment){
 function getAllUpcomingAppointmentsByUser(user){
     var retArray = [];
     for(var i=0; i<appointmentData.length; i++){
-        if(user._email === appointmentData[i]._user._email && isAppointmentInTheFuture(new Date(appointmentData[i]._date), appointmentData[i]._time,))
+        if(user.email === appointmentData[i].user.email && isAppointmentInTheFuture(new Date(appointmentData[i].date), appointmentData[i].time,))
             retArray.push(appointmentData[i]);
     }
     return retArray;
@@ -66,22 +66,22 @@ function isAppointmentInTheFuture(date, time){
         return new Date() < date;
 }
 
-//The createAptBtn function will be executed when the user clicks on the submit button after he/she has filled out the web form.
+//The btnCreateAppointment function will be executed when the user clicks on the submit button after he/she has filled out the web form.
 //if all fields are filled out correctly and the validation was successful, a new appointment object will be created
 //Then the month must be reduced by 1 because the months in the date objects don't start with 1 (Jan) but with 0 (Jan)
 //The store the new appointment in the list and store the whole list in the local storage
 //After the alert, we select the parent div of the appointments in the dom-tree and and insert the new appointment as new child in an created row element
-function createAptBtn() {
+function btnCreateAppointment() {
     //get all elements
     var date    = document.getElementById("dateApt");
     var time    = document.getElementById("timeApt");
     var product = document.getElementById("productCategory");
     var comment = document.getElementById("message");
 
-    if(validateFields(date, comment, product, time)) {
+    if(isUserInputValid(date, comment, product, time)) {
         var newApt = new Appointment(user, new Date(Number(date.value.split("-")[0]), Number(date.value.split("-")[1]), Number(date.value.split("-")[2]), 0, 0),
                                      time.value, product.value, comment.value);
-        newApt._date.setMonth(newApt._date.getMonth()-1);
+        newApt.date.setMonth(newApt.date.getMonth()-1);
         appointmentData.push(newApt);
         localStorage.setItem("appointmentData", JSON.stringify(appointmentData));
         alert("Appointment created! We can't wait to see you soon at VinKø!");
@@ -91,8 +91,8 @@ function createAptBtn() {
 
 //this function validates every input value after the other and stores all results in an array
 //the a loop goes through the array and checks if all results are correct and return the overall result
-function validateFields(date, comment, product, time){
-    var checkArray = [  validateDateApt(date), validateDropDown(product), validateDropDown(time), validateComment(comment)];
+function isUserInputValid(date, comment, product, time){
+    var checkArray = [  isAptDateValid(date), isDropDownChoiceValid(product), isDropDownChoiceValid(time), isCommentValid(comment)];
     for(var i = 0; i<checkArray.length; i++){
         if(checkArray[i] === false)
             return false;
@@ -104,33 +104,33 @@ function validateFields(date, comment, product, time){
 //if the input field is empty, show the error validation visualization with "please select a date"
 //if the date is smaller than the actual date, show the error validation visualization ith "Date must be in the future"
 //if everything is correct, remove the error validation visualization if there is one
-function validateDateApt(dateElem) {
+function isAptDateValid(dateElem) {
     var messageId = "dateAptInfo";
     if(dateElem.value.length === 0)
-        return showErrorValidation(dateElem, "Please select a date", messageId);
+        return showValErrorMessage(dateElem, "Please select a date", messageId);
     else if (new Date(dateElem.value) < new Date())
-        return showErrorValidation(dateElem, "Date must be in the future", messageId);
+        return showValErrorMessage(dateElem, "Date must be in the future", messageId);
     else
-        return removeErrorValidation(dateElem, messageId);
+        return removeValErrorMessage(dateElem, messageId);
 }
 
 //validate if the dropdown is selected
-function validateDropDown(element){
+function isDropDownChoiceValid(element){
     var messageId = element.getAttribute("id") + "Info";
     //inline if statement: if the element id is equals the string "productCategory", then (?) set the variable innerText to "Please select one of the product options",
     //if not (else - :) set the variable innerText to "Please select one of the timeslots"
     var innerText = element.getAttribute("id") === "productCategory" ? "Please select one of the product options" : "Please select one of the timeslots";
     if(element.value === "-1")
-        return showErrorValidation(element, innerText, messageId);
+        return showValErrorMessage(element, innerText, messageId);
     else
-        return removeErrorValidation(element, messageId);
+        return removeValErrorMessage(element, messageId);
 }
 
 //validates if the field comment is filled out
-function validateComment(comment){
+function isCommentValid(comment){
     var messageId = "commentInfo";
     if(comment.value.length === 0)
-        return showErrorValidation(comment, "Please provide a message", messageId);
+        return showValErrorMessage(comment, "Please provide a message", messageId);
     else
-        return removeErrorValidation(comment, messageId);
+        return removeValErrorMessage(comment, messageId);
 }

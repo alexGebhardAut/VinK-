@@ -30,7 +30,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-lg-6">
                 <div class="row">
-                    <div class="col-lg-12" align="center"><h1 class="headerSubpages">Join Our Community</h1></div>
+                    <div class="col-lg-1"></div>
+                    <div class="col-lg-11" align="left"><h1 class="headerSubpages">Join Our Community</h1></div>
                 </div>
                 <div class="row">
                     <div class="col-sm-1 col-lg-1"></div>
@@ -41,30 +42,30 @@
                                 <input type="text" class="requiredField form-control" placeholder="First Name" id="firstName"/><span class="incorrect-validation" id = "infoFirstName"></span><br>
 
                                 <label for="dob">Date of Birth*</label>
-                                <input type="date" class="requiredField form-control" placeholder="Date of Birth" id="dob" onchange="validateDob(this)"/><span class="incorrect-validation" id = "infoDob"></span><br>
+                                <input type="date" class="requiredField form-control" placeholder="Date of Birth" id="dob" onchange="isDobValid(this)"/><span class="incorrect-validation" id = "infoDob"></span><br>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-6">
                                 <label for="lastName">Last Name*</label>
                                 <input type="text" class="requiredField form-control" placeholder="Last Name" id="lastName"/><span class="incorrect-validation" id = "infoLastName"></span><br>
 
                                 <label for="phoneNo">Phone Number*</label>
-                                <input type="text" class="requiredField form-control" placeholder="Phone number" id="phoneNo" onchange="validatePhoneNo(this)"/><span class="incorrect-validation" id = "infoPhoneNo"></span><br>
+                                <input type="text" class="requiredField form-control" placeholder="Phone number" id="phoneNo" onchange="isPhoneNoValid(this)"/><span class="incorrect-validation" id = "infoPhoneNo"></span><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-12 col-lg-12">
                                 <label for="email">E-Mail*</label>
-                                <input type="email" class="requiredField form-control" placeholder="E-Mail" id="email" onchange = "validateEmail(this)"/><span class="incorrect-validation" id = "infoEmail"></span><br>
+                                <input type="email" class="requiredField form-control" placeholder="E-Mail" id="email" onchange = "isEmailValid(this)"/><span class="incorrect-validation" id = "infoEmail"></span><br>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-12 col-sm-6 col-lg-6">
                                 <label for="password">Password*</label>
-                                <input type="password" class="requiredField form-control" placeholder="Password" id="password" onchange="validatePW(this);matchPW()"/><span class="incorrect-validation" id = "infoPassword"></span><br>
+                                <input type="password" class="requiredField form-control" placeholder="Password" id="password" onchange="isPasswordValid(this);isRepeatPwMatchingPw()"/><span class="incorrect-validation" id = "infoPassword"></span><br>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-lg-6">
                                 <label for="rptPassword">Password Repeat*</label>
-                                <input type="password" class="requiredField form-control" placeholder="Password Repeat" id="rptPassword" onchange="matchPW()"/><span class="incorrect-validation" id = "infoRptPassword"></span><br>
+                                <input type="password" class="requiredField form-control" placeholder="Password Repeat" id="rptPassword" onchange="isRepeatPwMatchingPw()"/><span class="incorrect-validation" id = "infoRptPassword"></span><br>
                             </div>
                         </div>
                     </div>
@@ -98,7 +99,7 @@
                     <div class="col-sm-1 col-lg-1"></div>
                     <div class="col-xs-12 col-sm-5 col-lg-5" style="padding-top: 1%">
                         <label class="container" id="agrLabelContainer"> I agree with everything!
-                            <input type="checkbox" id="chxSignUpAgr" onclick="validateAgreement(this)">
+                            <input type="checkbox" id="chxSignUpAgr" onclick="isAgreementChecked(this)">
                             <span class="checkmark" id="agrCheckMarkSpan"></span>
                         </label>
                         <label class="container"> Sign me up for the newsletter
@@ -114,7 +115,7 @@
                 <div class="row">
                     <div class="col-sm-1 col-lg-1"></div>
                     <div class="col-xs-12 col-sm-10 col-lg-10">
-                        <input class="btn btn-block form-control btn-vinko" style="margin-top: 2%" width="100%" type="button" value="Sign Up" id="btnSignUp" onclick="signUpButton()"/><br>
+                        <input class="btn btn-block form-control btn-vinko" style="margin-top: 2%" width="100%" type="button" value="Sign Up" id="btnSignUp" onclick="btnSignUpUser()"/><br>
                     </div>
                     <div class="col-sm-1 col-lg-1"></div>
                 </div>
@@ -145,11 +146,8 @@
             </div>
         </div>
     </div>
-
-
-    <script src="./js/models/User.js"></script>
-    <script src="./js/models/Address.js"></script>
-    <script src="./js/SupportingMethods.js"></script>
-    <script src="./js/UserOperations.js"></script>
+    <script src="js/Classes.js"></script>
+    <script src="js/GeneralFunctions.js"></script>
+    <script src="js/User.js"></script>
 </body>
 </html>
