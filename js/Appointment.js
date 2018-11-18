@@ -1,7 +1,8 @@
-//get all stored appointments from the system from the local storage
-var appointmentData = getAppointmentObjectArray(JSON.parse(localStorage.getItem("appointmentData")));
 //get the object of the logged in user from the local storage
 var user = getUserObject(JSON.parse(localStorage.getItem("user")));
+
+//get all stored appointments from the system from the local storage
+var appointmentData = getAppointmentObjectArray(JSON.parse(localStorage.getItem("appointmentData")));
 
 //if no user is logged in, e.g. a visitor visits the appointment sub page via entering the url and not via the forwarded link on the index page,
 //then the system displays an alert to inform the visitor to log in and he or she will be redirected back to the landing page automatically

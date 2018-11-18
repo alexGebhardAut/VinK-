@@ -1,19 +1,22 @@
 var userData = getUserObjectArray(JSON.parse(localStorage.getItem("userData")));
-var user = getUserObject(JSON.parse(localStorage.getItem("user")));
+var user = null;
 
-var divColHeaderSignUp = document.getElementById("signUpOrUserDiv");
-var divColHeaderLogin = document.getElementById("logInOrOutDiv");
-var divColHeaderUser = document.getElementById("userNameDiv");
-if(user === null){
-    divColHeaderSignUp.setAttribute("align","right");
-    divColHeaderSignUp.innerHTML = "<a class='btn btn-primary btn-fixed-length' href='Registration.html'>Sign up</a>";
-    divColHeaderLogin.innerHTML = "<input type='button' class='btn btn-success btn-fixed-length' value='Login' data-toggle='modal' data-target='#alertModelLogin'/>";
-}else{
-    divColHeaderSignUp.setAttribute("align","center");
-    divColHeaderSignUp.innerHTML = "<a class='btn btn-vinko btn-fixed-length' href='Appointment.html'>Appointment</a>";
-    divColHeaderUser.setAttribute("style","margin-top:0.4%");
-    divColHeaderUser.innerHTML = "<span class='fa fa-user'></span> " + user.getFullName();
-    divColHeaderLogin.innerHTML = "<input type='button' class='btn btn-info btn-fixed-length' onclick='btnLogoutUser()' value='Logout'/>";
+if(window.location.pathname.split("/")[2] === "Index.html") {
+    user = getUserObject(JSON.parse(localStorage.getItem("user")));
+    var divColHeaderSignUp = document.getElementById("signUpOrUserDiv");
+    var divColHeaderLogin = document.getElementById("logInOrOutDiv");
+    var divColHeaderUser = document.getElementById("userNameDiv");
+    if (user === null) {
+        divColHeaderSignUp.setAttribute("align", "right");
+        divColHeaderSignUp.innerHTML = "<a class='btn btn-primary btn-fixed-length' href='Registration.html'>Sign up</a>";
+        divColHeaderLogin.innerHTML = "<input type='button' class='btn btn-success btn-fixed-length' value='Login' data-toggle='modal' data-target='#alertModelLogin'/>";
+    } else {
+        divColHeaderSignUp.setAttribute("align", "center");
+        divColHeaderSignUp.innerHTML = "<a class='btn btn-vinko btn-fixed-length' href='Appointment.html'>Appointment</a>";
+        divColHeaderUser.setAttribute("style", "margin-top:0.4%");
+        divColHeaderUser.innerHTML = "<span class='fa fa-user'></span> " + user.getFullName();
+        divColHeaderLogin.innerHTML = "<input type='button' class='btn btn-info btn-fixed-length' onclick='btnLogoutUser()' value='Logout'/>";
+    }
 }
 
 // --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- Interacting Functions  --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
@@ -22,7 +25,7 @@ if(user === null){
 function btnSignUpUser() {
     /* [0] : "firstName"       [1] : "dob"         [2] : "lastName"    [3] : "phoneNo"     [4] : "email"
        [5] : "password"        [6]"rptPassword"    [6] : "city"        [7] : "country"                      */
-    var requiredFields = document.getElementsByClassName("areAllFieldsFilledOut");
+    var requiredFields = document.getElementsByClassName("requiredField");
 
 /* If everything is correctly filled out, a new user will be created
     The user's information includes the object address

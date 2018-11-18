@@ -1,5 +1,5 @@
-var leadData = getLeadObjectArray(JSON.parse(localStorage.getItem("leadDate")));
 var userData = getUserObjectArray(JSON.parse(localStorage.getItem("userData")));
+var leadData = getLeadObjectArray(JSON.parse(localStorage.getItem("leadDate")));
 
 function btnSubscribeNwl(){
     var fields = document.getElementsByClassName("requiredField");
