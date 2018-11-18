@@ -4,6 +4,8 @@ function getGeneratedUserData() {
             new Address("Emdrupvej 24", "1., 2.", "Copenhagen", "Osterbro", "2100", "Denmark"), false),
         new User("Jakub", "Wejskrab", "j.wejski@me.com", "22/02/1996", "+4550180070", "emdrupvej",
             new Address("Emdrupvej 24", "1., 2.", "Copenhagen", "Osterbro", "2100", "Denmark"), false),
+        new User("Sarah", "Mohammad", "sarah_ribal@hotmail.com", "11/12/1996", "+31614791149", "yoyoyoyo",
+            new Address("Emdrupvej 24", "1., 2.", "Copenhagen", "Osterbro", "2100", "Denmark"), false), 
         new User('Judah', 'Chan', 'eu.lacus@turpis.com', '23/03/1963', '14216460835', 'KLF15LPU0MP',
             new Address('P.O. Box 951, 1177 Malesuada. Ave', '6476 Laoreet Rd.', 'João Pessoa', 'PB', '93071', 'Armenia'), false),
         new User('Mechelle', 'Cherry', 'Nulla@auctor.org', '19/04/1995', '11364680523', 'LXT64OZV5NP',

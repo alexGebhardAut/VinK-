@@ -1,7 +1,7 @@
 var userData = getUserObjectArray(JSON.parse(localStorage.getItem("userData")));
 var user = null;
 
-if(window.location.pathname.split("/")[2] === "Index.html") {
+if(window.location.pathname.split("/")[window.location.pathname.split("/").length-1] === "Index.html") {
     user = getUserObject(JSON.parse(localStorage.getItem("user")));
     var divColHeaderSignUp = document.getElementById("signUpOrUserDiv");
     var divColHeaderLogin = document.getElementById("logInOrOutDiv");
@@ -63,7 +63,7 @@ function btnSignUpUser() {
    with document.cookie we create a cookie with the key user and the mail address as value. the expires attribute is the actual datetime + 1 day.
    that means our cookie expires after 24 hours.
 
-   User behaviour: When a user checks the box, logs in and close the browser, the cookie will be exist until the expire datetime. If the user visits the website
+   User behaviour: When a user checks the box, logs in and close the browser, the cookie will exist until the expire datetime. If the user visits the website
    for example 5 hours later, he/she will be still logged in. If the user visits the website 2 days later, the cookie doesn't exist anymore, the user has to log in again.
    The functionality of this is implemented in the window.onload function in the Data.js file.
 */
@@ -105,13 +105,12 @@ function isUserInputValid(requiredFields, checkboxElement, recaptchaElement){
         isPasswordValid(requiredFields[5]),
         isRepeatPwMatchingPw(),
         isReCaptchaElementClicked(recaptchaElement),
-        isEmailAlreadyExisting(userData, requiredFields[4])
     ];
     for(var i = 0; i<checkArray.length; i++){
         if(!checkArray[i])
             return false;
     }
-    return true;
+    return isEmailAlreadyExisting(userData, requiredFields[4]);
 }
 
 //returns a user object founded by mail and password. the loop goes through the whole lost of users and one user after the other if the given and actual loop mail address

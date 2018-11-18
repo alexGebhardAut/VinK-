@@ -33,7 +33,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
     background-color: rgb(189, 135, 48);
 }
 
-
 .incorrect-validation{
     color: red;
 }
@@ -121,8 +120,6 @@ textarea{
 .checked {
     color: orange;
 }
-
-
 
 header.masthead {
     height: -webkit-fill-available;
