@@ -1,12 +1,12 @@
 var reviewData = getCustomerReviewObjectArray(JSON.parse(localStorage.getItem("reviewData")));
-var user = getUserObject(JSON.parse(localStorage.getItem("user")));
+var customer = getCustomerObject(JSON.parse(localStorage.getItem("customer")));
 var chosenRating = 0;
 
 if (reviewData === null) {
     reviewData = []
 }
 
-if(user === null) {
+if(customer === null) {
     document.getElementById("btnCreateReview").disabled = true;
 }
 
@@ -23,7 +23,7 @@ function btnAddReview() {
         showModalAlertMessage("Please rate us", "addReviewMessage");
     }
     else {
-        var newReview = new CustomerReview (title.value, new Date(), user, chosenRating, content.value);
+        var newReview = new CustomerReview (title.value, new Date(), customer, chosenRating, content.value);
         reviewData.unshift(newReview);
         localStorage.setItem("reviewData", JSON.stringify(reviewData));
         createElementForReview(document.getElementById("reviewParent"), newReview);
@@ -92,7 +92,7 @@ function createElementForReview(parentElemen, review){
                                 "<div class='row reviewUserTime'>" +
                                     "<div class='col-lg-1'></div>" +
                                     "<div class='col-lg-5'>" +
-                                        "<span class='fa fa-user'></span> " + review.user.getFullName() +
+                                        "<span class='fa fa-user'></span> " + review.customer.getFullName() +
                                     "</div>" +
                                     "<div class='col-lg-5' align='right'>" + review.dateTime.toGMTString().substr(0, review.dateTime.toGMTString().length - 7) +
                                     "<div class='col-lg-1'></div>" +

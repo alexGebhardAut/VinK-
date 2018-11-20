@@ -123,8 +123,8 @@ function showOpeningHours(){
     var actualDateTime = new Date();
     var selectedOpeningHour = null;
     var openingHours = [ new OpeningHour("Monday", 1, 10, 19),   new OpeningHour("Tuesday", 2, 10, 19), new OpeningHour("Wednesday", 3, 10, 19),
-        new OpeningHour("Thursday", 4, 10, 19), new OpeningHour("Friday", 5, 10, 19),  new OpeningHour("Saturday", 6, 10, 15),
-        new OpeningHour("Sunday", 0, 10, 19) ];
+        new OpeningHour("Thursday", 4, 10, 19), new OpeningHour("Friday", 5, 10, 19),  new OpeningHour("Saturday", 6, 10, 17),
+        new OpeningHour("Sunday", 0, 10, 17) ];
 
     for(var i=0; i<openingHours.length; i++){
         var divElementParent = document.getElementById("oh"+openingHours[i].dayName);

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Vinko - Registration</title>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="../css/AlternativeStyle.css">
+
+        <!-- meta tags for favicon on different devices -->
+        <link rel="apple-touch-icon" sizes="72x72" href="../img/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png">
+        <link rel="mask-icon" href="../img/favicon/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-lg-12" align="center">
+                    <a href="Index.html"><img src="../img/VinKo.png" class="img-fluid" style="width:15%; margin-top:1%"/></a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-11" align="left"><h1 class="headerSubpages">Join Our Community</h1></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1 col-lg-1"></div>
+                        <div class="col-xs-12 col-sm-10 col-lg-10">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <label for="firstName">First Name*</label>
+                                    <input type="text" class="requiredField form-control" placeholder="First Name" id="firstName"/><span class="incorrect-validation" id = "infoFirstName"></span><br>
+
+                                    <label for="dob">Date of Birth*</label>
+                                    <input type="date" class="requiredField form-control" placeholder="Date of Birth" id="dob" onchange="isDobValid(this)"/><span class="incorrect-validation" id = "infoDob"></span><br>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <label for="lastName">Last Name*</label>
+                                    <input type="text" class="requiredField form-control" placeholder="Last Name" id="lastName"/><span class="incorrect-validation" id = "infoLastName"></span><br>
+
+                                    <label for="phoneNo">Phone Number*</label>
+                                    <input type="text" class="requiredField form-control" placeholder="Phone number" id="phoneNo" onchange="isPhoneNoValid(this)"/><span class="incorrect-validation" id = "infoPhoneNo"></span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-lg-12">
+                                    <label for="email">E-Mail*</label>
+                                    <input type="email" class="requiredField form-control" placeholder="E-Mail" id="email" onchange = "isEmailValid(this)"/><span class="incorrect-validation" id = "infoEmail"></span><br>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <label for="password">Password*</label>
+                                    <input type="password" class="requiredField form-control" placeholder="Password" id="password" onchange="isPasswordValid(this);isRepeatPwMatchingPw()"/><span class="incorrect-validation" id = "infoPassword"></span><br>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-lg-6">
+                                    <label for="rptPassword">Password Repeat*</label>
+                                    <input type="password" class="requiredField form-control" placeholder="Password Repeat" id="rptPassword" onchange="isRepeatPwMatchingPw()"/><span class="incorrect-validation" id = "infoRptPassword"></span><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-1 col-lg-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1 col-lg-1"></div>
+                        <div class="col-xs-12 col-sm-5 col-lg-5">
+                            <label for="address1">Address Line 1</label>
+                            <input type="text" class="form-control" placeholder="Address Line 1" id="address1"/> <br>
+
+                            <label for="zipCode">Zip Code</label>
+                            <input type="text" class="form-control" placeholder="ZipCode" id="zipCode"/> <br>
+
+                            <label for="region">Region</label>
+                            <input type="text" class="form-control" placeholder="Region" id="region"/><br>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-lg-5">
+                            <label for="address2">Address Line 2</label>
+                            <input type="text" class="form-control" placeholder="Address Line 2" id="address2"/> <br>
+
+                            <label for="city">City*</label>
+                            <input type="text" class="requiredField form-control" placeholder="City" id="city"/><span class="incorrect-validation" id = "infoCity"></span><br>
+
+                            <label for="country">Country*</label>
+                            <input type="text" class="requiredField form-control" placeholder="Country" id="country"/><span class="incorrect-validation" id = "infoCountry"></span><br>
+                        </div>
+                        <div class="col-sm-1 col-lg-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1 col-lg-1"></div>
+                        <div class="col-xs-12 col-sm-5 col-lg-5" style="padding-top: 1%">
+                            <label class="container" id="agrLabelContainer"> I agree with everything!
+                                <input type="checkbox" id="chxSignUpAgr" onclick="isAgreementChecked(this)">
+                                <span class="checkmark" id="agrCheckMarkSpan"></span>
+                            </label>
+                            <label class="container"> Sign me up for the newsletter
+                                <input type="checkbox" id="chxNewsletter">
+                                <span class="checkmark"></span>
+                            </label>
+                        </div>
+                        <div class="col-xs-12 col-sm-5 col-lg-5" align="center">
+                            <div class="g-recaptcha" data-sitekey="6LeOJ3UUAAAAAND-EUT6sTJpyTFcvtqpWuvkhBw6"></div>
+                        </div>
+                        <div class="col-sm-1 col-lg-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1 col-lg-1"></div>
+                        <div class="col-xs-12 col-sm-10 col-lg-10">
+                            <input class="btn btn-block form-control btn-vinko" style="margin-top: 2%" width="100%" type="button" value="Sign Up" id="btnSignUp" onclick="btnSignUpUser()"/><br>
+                        </div>
+                        <div class="col-sm-1 col-lg-1"></div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-lg-6">
+                    <!-- A photo is added on the right side of the page -->
+                    <img src="../img/emailSignUpImg.jpg" class="img-fluid" alt="Clothing Alterations" style="width:91%; height:auto; margin-top: 10%; margin-right: 1%"/>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="alertModel" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="alertModalLabel"><b>Information</b></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div id="alertModelBodyRegistration" class="modal-body">
+                        Dialog Content
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='Index.html'" >Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="../js/Classes.js"></script>
+        <script src="../js/GeneralFunctions.js"></script>
+        <script src="../js/User.js"></script>
+    </body>
+</html>

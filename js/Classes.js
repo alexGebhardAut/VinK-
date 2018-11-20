@@ -1,3 +1,15 @@
+class User{
+    constructor(firstname, lastname, email){
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+    }
+
+    getFullName(){
+        return this.firstname + " " + this.lastname;
+    }
+}
+
 class Address {
     constructor(addLine1, addLine2, city, stProReg, zipCode, country){
         this.addLine1 = addLine1;               //String
@@ -9,19 +21,19 @@ class Address {
     }
 }
 
-function getAddressObject(anonymusObject){
-    if(anonymusObject !== null) {
-        return new Address(anonymusObject.addLine1, anonymusObject.addLine2, anonymusObject.city, anonymusObject.stProReg, anonymusObject.zipCode, anonymusObject.country);
+function getAddressObject(anonymousObject){
+    if(anonymousObject !== null) {
+        return new Address(anonymousObject.addLine1, anonymousObject.addLine2, anonymousObject.city, anonymousObject.stProReg, anonymousObject.zipCode, anonymousObject.country);
     }else{
         return null;
     }
 }
 
-function getAddressObjectArray(anonymusList){
-    if(anonymusList !== null) {
+function getAddressObjectArray(anonymousList){
+    if(anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymusList.length; i++) {
-            retArray.push(getAddressObject(anonymusList[i]));
+        for (var i = 0; i < anonymousList.length; i++) {
+            retArray.push(getAddressObject(anonymousList[i]));
         }
         return retArray;
     }else{
@@ -29,37 +41,31 @@ function getAddressObjectArray(anonymusList){
     }
 }
 
-class User{
+class Customer extends User{
     constructor(firstname, lastname, email, dob, phoneNo, password, homeAddress, newsletter){
-        this.firstname = firstname;             //String
-        this.lastname = lastname;               //String
-        this.email = email;                     //String
+        super(firstname, lastname, email);
         this.dob = dob;                         //Date
         this.phoneNo = phoneNo;                 //String
         this.password = password;               //String
         this.homeAddress = homeAddress;         //Address [Custom Class]
         this.newsletter = newsletter;           //Boolean
     }
-
-    getFullName(){
-        return this.firstname + " " + this.lastname;
-    }
 }
 
-function getUserObject(anonymusObject){
-    if(anonymusObject !== null) {
-        return new User(anonymusObject.firstname, anonymusObject.lastname, anonymusObject.email, new Date(anonymusObject.dob), anonymusObject.phoneNo, anonymusObject.password,
-            getAddressObject(anonymusObject.homeAddress), anonymusObject.newsletter);
+function getCustomerObject(anonymousObject){
+    if(anonymousObject !== null) {
+        return new Customer(anonymousObject.firstname, anonymousObject.lastname, anonymousObject.email, new Date(anonymousObject.dob), anonymousObject.phoneNo, anonymousObject.password,
+            getAddressObject(anonymousObject.homeAddress), anonymousObject.newsletter);
     }else{
         return null;
     }
 }
 
-function getUserObjectArray(anonymusList){
-    if(anonymusList !== null) {
+function getCustomerObjectArray(anonymousList){
+    if(anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymusList.length; i++) {
-            retArray.push(getUserObject(anonymusList[i]));
+        for (var i = 0; i < anonymousList.length; i++) {
+            retArray.push(getCustomerObject(anonymousList[i]));
         }
         return retArray;
     }else{
@@ -68,8 +74,8 @@ function getUserObjectArray(anonymusList){
 }
 
 class Appointment {
-    constructor(user, date, time, productCategory, comment) {
-        this.user = user;                       //User [Custom Class]
+    constructor(customer, date, time, productCategory, comment) {
+        this.customer = customer;               //Customer [Custom Class]
         this.date = date;                       //Date
         this.time = time;                       //String
         this.productCategory = productCategory; //String
@@ -77,19 +83,19 @@ class Appointment {
     }
 }
 
-function getAppointmentObject(anonymusObject){
-    if(anonymusObject !== null) {
-        return new Appointment(getUserObject(anonymusObject.user), new Date(anonymusObject.date), anonymusObject.time, anonymusObject.productCategory, anonymusObject.comment);
+function getAppointmentObject(anonymousObject){
+    if(anonymousObject !== null) {
+        return new Appointment(getCustomerObject(anonymousObject.customer), new Date(anonymousObject.date), anonymousObject.time, anonymousObject.productCategory, anonymousObject.comment);
     }else{
         return null;
     }
 }
 
-function getAppointmentObjectArray(anonymusList){
-    if(anonymusList !== null) {
+function getAppointmentObjectArray(anonymousList){
+    if(anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymusList.length; i++) {
-            retArray.push(getAppointmentObject(anonymusList[i]));
+        for (var i = 0; i < anonymousList.length; i++) {
+            retArray.push(getAppointmentObject(anonymousList[i]));
         }
         return retArray;
     }else{
@@ -98,28 +104,28 @@ function getAppointmentObjectArray(anonymusList){
 }
 
 class CustomerReview {
-    constructor(title, dateTime, user, rating, content) {
+    constructor(title, dateTime, customer, rating, content) {
         this.title = title;                     //String
         this.dateTime = dateTime;               //Date
-        this.user = user;                       //User [Custom Class]
+        this.customer = customer;               //Customer [Custom Class]
         this.rating = rating;                   //Integer/Number
         this.content = content;                 //String
     }
 }
 
-function getCustomerReviewObject(anonymusObject){
-    if(anonymusObject !== null) {
-        return new CustomerReview(anonymusObject.title, new Date(anonymusObject.dateTime), getUserObject(anonymusObject.user), anonymusObject.rating, anonymusObject.content);
+function getCustomerReviewObject(anonymousObject){
+    if(anonymousObject !== null) {
+        return new CustomerReview(anonymousObject.title, new Date(anonymousObject.dateTime), getCustomerObject(anonymousObject.customer), anonymousObject.rating, anonymousObject.content);
     }else{
         return null;
     }
 }
 
-function getCustomerReviewObjectArray(anonymusList) {
-    if (anonymusList !== null) {
+function getCustomerReviewObjectArray(anonymousList) {
+    if (anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymusList.length; i++) {
-            retArray.push(getCustomerReviewObject(anonymusList[i]));
+        for (var i = 0; i < anonymousList.length; i++) {
+            retArray.push(getCustomerReviewObject(anonymousList[i]));
         }
         return retArray;
     }else{
@@ -127,28 +133,26 @@ function getCustomerReviewObjectArray(anonymusList) {
     }
 }
 
-class Lead{
+class Lead extends User{
     constructor(firstname, lastname, email, signedTime){
-        this.firstname = firstname;             //String
-        this.lastname = lastname;               //String
-        this.email = email;                     //String
+        super(firstname, lastname, email);
         this.signedTime = signedTime;           //Date
     }
 }
 
-function getLeadObject(anonymusObject){
-    if(anonymusObject !== null) {
-        return new Lead(anonymusObject.firstname, anonymusObject.lastname, anonymusObject.email, new Date(anonymusObject.signedTime));
+function getLeadObject(anonymousObject){
+    if(anonymousObject !== null) {
+        return new Lead(anonymousObject.firstname, anonymousObject.lastname, anonymousObject.email, new Date(anonymousObject.signedTime));
     }else{
         return null;
     }
 }
 
-function getLeadObjectArray(anonymusList){
-    if(anonymusList !== null) {
+function getLeadObjectArray(anonymousList){
+    if(anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymusList.length; i++) {
-            retArray.push(getLeadObject(anonymusList[i]));
+        for (var i = 0; i < anonymousList.length; i++) {
+            retArray.push(getLeadObject(anonymousList[i]));
         }
         return retArray;
     }else{

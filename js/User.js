@@ -1,12 +1,12 @@
-var userData = getUserObjectArray(JSON.parse(localStorage.getItem("userData")));
-var user = null;
+var customerData = getCustomerObjectArray(JSON.parse(localStorage.getItem("customerData")));
+var customer = null;
 
 if(window.location.pathname.split("/")[window.location.pathname.split("/").length-1] === "Index.html") {
-    user = getUserObject(JSON.parse(localStorage.getItem("user")));
+    customer = getCustomerObject(JSON.parse(localStorage.getItem("customer")));
     var divColHeaderSignUp = document.getElementById("signUpOrUserDiv");
     var divColHeaderLogin = document.getElementById("logInOrOutDiv");
     var divColHeaderUser = document.getElementById("userNameDiv");
-    if (user === null) {
+    if (customer === null) {
         divColHeaderSignUp.setAttribute("align", "right");
         divColHeaderSignUp.innerHTML = "<a class='btn btn-primary btn-fixed-length' href='Registration.html'>Sign up</a>";
         divColHeaderLogin.innerHTML = "<input type='button' class='btn btn-success btn-fixed-length' value='Login' data-toggle='modal' data-target='#alertModelLogin'/>";
@@ -14,7 +14,7 @@ if(window.location.pathname.split("/")[window.location.pathname.split("/").lengt
         divColHeaderSignUp.setAttribute("align", "center");
         divColHeaderSignUp.innerHTML = "<a class='btn btn-vinko btn-fixed-length' href='Appointment.html'>Appointment</a>";
         divColHeaderUser.setAttribute("style", "margin-top:0.4%");
-        divColHeaderUser.innerHTML = "<span class='fa fa-user'></span> " + user.getFullName();
+        divColHeaderUser.innerHTML = "<span class='fa fa-user'></span> " + customer.getFullName();
         divColHeaderLogin.innerHTML = "<input type='button' class='btn btn-info btn-fixed-length' onclick='btnLogoutUser()' value='Logout'/>";
     }
 }
@@ -31,7 +31,7 @@ function btnSignUpUser() {
     The user's information includes the object address
     The news letter box can be checked or not (boolean) depending on the user's preference */
     if(isUserInputValid(requiredFields, document.getElementById("chxSignUpAgr"), document.getElementById("g-recaptcha-response"))){
-        var user = new User(requiredFields[0].value,                                //firstname
+        var customerData = new customerData(requiredFields[0].value,                //firstname
                             requiredFields[2].value,                                //lastname
                             requiredFields[4].value,                                //email
                             requiredFields[1].value,                                //dob
@@ -45,9 +45,9 @@ function btnSignUpUser() {
                                         requiredFields[7].value),                   //country
                             document.getElementById("chxNewsletter").checked        //newsletter
             );
-        // A new variable user is created and is pushed into the array userData
-        userData.push(user);
-        localStorage.setItem("userData", JSON.stringify(userData));
+        // A new variable customer is created and is pushed into the array customerData
+        customerData.push(customer);
+        localStorage.setItem("customerData", JSON.stringify(customerData));
         callDialog("Congratulations, you have become a member! Please log in on the main page");
     }
 }
@@ -76,11 +76,11 @@ function btnLoginUser() {
         if (foundedUser === null) {
             showModalAlertMessage("Something went wrong.", "loginMessage");
         } else {
-            localStorage.setItem("user", JSON.stringify(foundedUser));
+            localStorage.setItem("customer", JSON.stringify(foundedUser));
             if(document.getElementById("rememberme").checked){
                 var now = new Date();
                 now.setDate(now.getDate()+1);
-                document.cookie = "user=" + fields[0].value + ";expires=" + now.toUTCString() + ";";
+                document.cookie = "customer=" + fields[0].value + ";expires=" + now.toUTCString() + ";";
             }
             window.location.href = "Index.html";
         }
@@ -89,8 +89,8 @@ function btnLoginUser() {
 
 //remove the user from the local storage, expire the cookie and redirect the user back to the landing page
 function btnLogoutUser(){
-    localStorage.removeItem("user");
-    document.cookie = "user=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    localStorage.removeItem("customer");
+    document.cookie = "customer=; expires=Thu, 01 Jan 1970 00:00:01 GMT;";
     window.location.href = "Index.html";
 }
 
@@ -110,17 +110,17 @@ function isUserInputValid(requiredFields, checkboxElement, recaptchaElement){
         if(!checkArray[i])
             return false;
     }
-    return isEmailAlreadyExisting(userData, requiredFields[4]);
+    return isEmailAlreadyExisting(customerData, requiredFields[4]);
 }
 
 //returns a user object founded by mail and password. the loop goes through the whole lost of users and one user after the other if the given and actual loop mail address
 //match. if we've found a match, then the stored password in the founded user object will be compared with the entered password. are mail and password correct,
 //the function returns the founded user object. if something is wrong, the function returns null
 function getUserByEmailPw(fields) {
-    for (var i = 0; i < userData.length; i++) {
-        if (fields[0].value === userData[i].email) {
-            if (fields[1].value === userData[i].password)
-                return userData[i];
+    for (var i = 0; i < customerData.length; i++) {
+        if (fields[0].value === customerData[i].email) {
+            if (fields[1].value === customerData[i].password)
+                return customerData[i];
             else
                 break;
         }
@@ -155,7 +155,7 @@ function showPw(updown) {
 }
 
 //after the user has entered the email and password, it will submit with an enter key
-$('#password').keypress(function(e) {
+$('#passwordLogin').keypress(function(e) {
     if (e.which === 13) {
         btnLoginUser();
     }
