@@ -11,6 +11,16 @@ function areAllFieldsFilledOut(fieldsArray) {
     return check;
 }
 
+//Validate if the provided input (first name or last name) has only letters not number
+function isTextInputValid(element, messageId){
+    var re = /^[a-zA-Z]+$/;
+    if(re.test(element.value) === false){
+        return showValErrorMessage(element, "Input is not valid. Please enter only letters", messageId);
+    }else{
+        return removeValErrorMessage(element, messageId);
+    }
+}
+
 // Validate if the provided email address is a valid email address
 function isEmailValid(element) {
     var messageId = "infoEmail";

@@ -31,7 +31,7 @@ function btnSignUpUser() {
     The user's information includes the object address
     The news letter box can be checked or not (boolean) depending on the user's preference */
     if(isUserInputValid(requiredFields, document.getElementById("chxSignUpAgr"), document.getElementById("g-recaptcha-response"))){
-        var newCustomer = new Customer(requiredFields[0].value,                //firstname
+        var newCustomer = new Customer(requiredFields[0].value,                     //firstname
                             requiredFields[2].value,                                //lastname
                             requiredFields[4].value,                                //email
                             requiredFields[1].value,                                //dob
@@ -98,13 +98,15 @@ function btnLogoutUser(){
 
 function isUserInputValid(requiredFields, checkboxElement, recaptchaElement){
     var checkArray = [  isAgreementChecked(checkboxElement),
-        areAllFieldsFilledOut(requiredFields),
+        isTextInputValid(requiredFields[0], "infoFirstName"),
+        isTextInputValid(requiredFields[2], "infoLastName"),
         isEmailValid(requiredFields[4]),
         isDobValid(requiredFields[1]),
         isPhoneNoValid(requiredFields[3]),
         isPasswordValid(requiredFields[5]),
         isRepeatPwMatchingPw(),
         isReCaptchaElementClicked(recaptchaElement),
+        areAllFieldsFilledOut(requiredFields)
     ];
     for(var i = 0; i<checkArray.length; i++){
         if(!checkArray[i])
