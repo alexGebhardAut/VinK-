@@ -4,6 +4,10 @@ var customer = getCustomerObject(JSON.parse(localStorage.getItem("customer")));
 //get all stored appointments from the system from the local storage
 var appointmentData = getAppointmentObjectArray(JSON.parse(localStorage.getItem("appointmentData")));
 
+if(appointmentData === null){
+    appointmentData = [];
+}
+
 //if no customer is logged in, e.g. a visitor visits the appointment sub page via entering the url and not via the forwarded link on the index page,
 //then the system displays an alert to inform the visitor to log in and he or she will be redirected back to the landing page automatically
 //if a customer is logged in, then firstname. lastname, mail address and all upcoming appointments will be displayed
@@ -86,6 +90,10 @@ function btnCreateAppointment() {
         appointmentData.push(newApt);
         localStorage.setItem("appointmentData", JSON.stringify(appointmentData));
         alert("Appointment created! We can't wait to see you soon at VinKø!");
+        var defaultElement = document.getElementById("upcomingAptDefaultEntry");
+        if(defaultElement !== null){
+            document.getElementById("upcomingAptParentDiv").removeChild(defaultElement);
+        }
         document.getElementById("upcomingAptParentDiv").appendChild(createRowElement(newApt));
     }
 }

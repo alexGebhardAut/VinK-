@@ -31,7 +31,7 @@ function btnSignUpUser() {
     The user's information includes the object address
     The news letter box can be checked or not (boolean) depending on the user's preference */
     if(isUserInputValid(requiredFields, document.getElementById("chxSignUpAgr"), document.getElementById("g-recaptcha-response"))){
-        var customerData = new customerData(requiredFields[0].value,                //firstname
+        var newCustomer = new Customer(requiredFields[0].value,                //firstname
                             requiredFields[2].value,                                //lastname
                             requiredFields[4].value,                                //email
                             requiredFields[1].value,                                //dob
@@ -46,7 +46,7 @@ function btnSignUpUser() {
                             document.getElementById("chxNewsletter").checked        //newsletter
             );
         // A new variable customer is created and is pushed into the array customerData
-        customerData.push(customer);
+        customerData.push(newCustomer);
         localStorage.setItem("customerData", JSON.stringify(customerData));
         callDialog("Congratulations, you have become a member! Please log in on the main page");
     }
