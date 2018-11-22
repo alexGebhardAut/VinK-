@@ -88,10 +88,10 @@
                             <input type="text" class="form-control" placeholder="Address Line 2" id="address2"/> <br>
 
                             <label for="city">City*</label>
-                            <input type="text" class="requiredField form-control" placeholder="City" id="city"/><span class="incorrect-validation" id = "infoCity"></span><br>
+                            <input type="text" class="requiredField form-control" placeholder="City" id="city" onchange="isTextInputValid(this, 'infoCity')"/><span class="incorrect-validation" id = "infoCity"></span><br>
 
                             <label for="country">Country*</label>
-                            <input type="text" class="requiredField form-control" placeholder="Country" id="country"/><span class="incorrect-validation" id = "infoCountry"></span><br>
+                            <input type="text" class="requiredField form-control" placeholder="Country" id="country" onchange="isTextInputValid(this, 'infoCountry')"/><span class="incorrect-validation" id = "infoCountry"></span><br>
                         </div>
                         <div class="col-sm-1 col-lg-1"></div>
                     </div>

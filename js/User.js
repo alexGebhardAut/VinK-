@@ -69,13 +69,13 @@ function btnSignUpUser() {
 */
 function btnLoginUser() {
     var fields = [document.getElementById("emailLogin"), document.getElementById("passwordLogin")];
-    if (fields[0].value.length === 0 || fields[1].value.length === 0){
+    if (fields[0].value.length === 0 || fields[1].value.length === 0)
         showModalAlertMessage("Please fill out your email address and password", "loginMessage");
-    }else{
+    else{
         var foundedUser = getUserByEmailPw(fields);
-        if (foundedUser === null) {
+        if (foundedUser === null)
             showModalAlertMessage("Something went wrong.", "loginMessage");
-        } else {
+        else {
             localStorage.setItem("customer", JSON.stringify(foundedUser));
             if(document.getElementById("rememberme").checked){
                 var now = new Date();
@@ -108,7 +108,7 @@ function isUserInputValid(requiredFields, checkboxElement, recaptchaElement){
         isReCaptchaElementClicked(recaptchaElement),
         areAllFieldsFilledOut(requiredFields)
     ];
-    for(var i = 0; i<checkArray.length; i++){
+    for(i = 0; i<checkArray.length; i++){
         if(!checkArray[i])
             return false;
     }
@@ -119,7 +119,7 @@ function isUserInputValid(requiredFields, checkboxElement, recaptchaElement){
 //match. if we've found a match, then the stored password in the founded user object will be compared with the entered password. are mail and password correct,
 //the function returns the founded user object. if something is wrong, the function returns null
 function getUserByEmailPw(fields) {
-    for (var i = 0; i < customerData.length; i++) {
+    for (i = 0; i < customerData.length; i++) {
         if (fields[0].value === customerData[i].email) {
             if (fields[1].value === customerData[i].password)
                 return customerData[i];
@@ -134,14 +134,14 @@ function getUserByEmailPw(fields) {
 function isAgreementChecked(element){
     var agrElem = document.getElementById("agrCheckMarkSpan");
     var agrSpanElem = document.getElementById("agrLabelContainer");
-    if(element.checked === false){
-        agrElem.setAttribute("class", agrElem.getAttribute("class") + " validErrorAgreement");
-        agrSpanElem.setAttribute("class", agrSpanElem.getAttribute("class") + " incorrect-validation");
+    if(!element.checked){
+        agrElem.classList.add("validErrorAgreement");
+        agrSpanElem.classList.add("incorrect-validation");
         return false;
     }else{
-        if(agrElem.getAttribute("class").includes(" validErrorAgreement")){
-            agrElem.setAttribute("class", agrElem.getAttribute("class").substr(0, agrElem.getAttribute("class").length-20));
-            agrSpanElem.setAttribute("class", agrSpanElem.getAttribute("class").substr(0, agrSpanElem.getAttribute("class").length-21));
+        if(agrElem.classList.contains("validErrorAgreement")){
+            agrElem.classList.remove("validErrorAgreement");
+            agrSpanElem.classList.remove("incorrect-validation");
         }
         return true;
     }
@@ -149,16 +149,14 @@ function isAgreementChecked(element){
 
 // The next functions enable the user to see his written password in text and change it back to the bullet notation
 function showPw(updown) {
-    if(updown) {
+    if(updown)
         document.getElementById('passwordLogin').type = "text";
-    }else{
+    else
         document.getElementById('passwordLogin').type = "password";
-    }
 }
 
 //after the user has entered the email and password, it will submit with an enter key
 $('#passwordLogin').keypress(function(e) {
-    if (e.which === 13) {
+    if (e.which === 13)
         btnLoginUser();
-    }
 });

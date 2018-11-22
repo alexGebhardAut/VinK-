@@ -2,13 +2,11 @@ var reviewData = getCustomerReviewObjectArray(JSON.parse(localStorage.getItem("r
 var customer = getCustomerObject(JSON.parse(localStorage.getItem("customer")));
 var chosenRating = 0;
 
-if (reviewData === null) {
-    reviewData = []
-}
+if (reviewData === null)
+    reviewData = [];
 
-if(customer === null) {
+if(customer === null)
     document.getElementById("btnCreateReview").disabled = true;
-}
 
 displayReviewFromStorage();
 
@@ -17,19 +15,16 @@ function btnAddReview() {
     var title = document.getElementById("title");
     var content = document.getElementById("contentReview");
 
-    if (title.value.length === 0 || content.value.length === 0) {
+    if (title.value.length === 0 || content.value.length === 0)
         showModalAlertMessage("Please fill out the form", "addReviewMessage");
-    }else if(chosenRating === 0){
+    else if(chosenRating === 0)
         showModalAlertMessage("Please rate us", "addReviewMessage");
-    }
     else {
         var newReview = new CustomerReview (title.value, new Date(), customer, chosenRating, content.value);
         reviewData.unshift(newReview);
         localStorage.setItem("reviewData", JSON.stringify(reviewData));
         createElementForReview(document.getElementById("reviewParent"), newReview);
-        $(function(){
-            $('#alertModelReview').modal('toggle');
-        });
+        $(function(){ $('#alertModelReview').modal('toggle'); });
         //Clear the form
         title.value = "";
         content.value = "";
@@ -40,30 +35,24 @@ function btnAddReview() {
 }
 
 function chooseRating(position) {
-    var actualClassName = "";
-    for (var i = 1; i <= position; i++) {
-        actualClassName = document.getElementById("star" + i).getAttribute("class");
-        if(actualClassName.includes(" starSelected") === false) {
-            document.getElementById("star" + i).setAttribute("class", document.getElementById("star" + i).getAttribute("class") + " starSelected");
-        }
+    for (i = 1; i <= position; i++) {
+        if(!document.getElementById("star" + i).classList.contains("starSelected"))
+            document.getElementById("star" + i).classList.add("starSelected");
     }
-    for(var i=position+1; i <= 5; i++){
-        actualClassName = document.getElementById("star" + i).getAttribute("class");
-        if(actualClassName.includes(" starSelected")){
-            document.getElementById("star" + i).setAttribute("class", actualClassName.substring(0, actualClassName.length-12));
-        }
+    for(i = position+1; i <= 5; i++){
+        if(document.getElementById("star" + i).classList.contains("starSelected"))
+            document.getElementById("star" + i).classList.remove("starSelected");
     }
     chosenRating = position;
 }
 
 function getStarReviewByNo(rating) {
     var retString = "";
-    for(i=1; i<=5; i++){
-        if(i<=rating){
+    for(i = 1; i <= 5; i++){
+        if(i <= rating)
             retString += "<span class='fa fa-star checked'></span>";
-        }else{
+        else
             retString += "<span class='fa fa-star'></span>";
-        }
     }
     return retString;
 }

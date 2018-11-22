@@ -22,23 +22,21 @@ class Address {
 }
 
 function getAddressObject(anonymousObject){
-    if(anonymousObject !== null) {
+    if(anonymousObject !== null)
         return new Address(anonymousObject.addLine1, anonymousObject.addLine2, anonymousObject.city, anonymousObject.stProReg, anonymousObject.zipCode, anonymousObject.country);
-    }else{
+    else
         return null;
-    }
 }
 
 function getAddressObjectArray(anonymousList){
     if(anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymousList.length; i++) {
+        for (i = 0; i < anonymousList.length; i++) {
             retArray.push(getAddressObject(anonymousList[i]));
         }
         return retArray;
-    }else{
+    }else
         return null;
-    }
 }
 
 class Customer extends User{
@@ -53,24 +51,21 @@ class Customer extends User{
 }
 
 function getCustomerObject(anonymousObject){
-    if(anonymousObject !== null) {
-        return new Customer(anonymousObject.firstname, anonymousObject.lastname, anonymousObject.email, new Date(anonymousObject.dob), anonymousObject.phoneNo, anonymousObject.password,
-            getAddressObject(anonymousObject.homeAddress), anonymousObject.newsletter);
-    }else{
+    if(anonymousObject !== null)
+        return new Customer(anonymousObject.firstname, anonymousObject.lastname, anonymousObject.email, new Date(anonymousObject.dob), anonymousObject.phoneNo, anonymousObject.password, getAddressObject(anonymousObject.homeAddress), anonymousObject.newsletter);
+    else
         return null;
-    }
 }
 
 function getCustomerObjectArray(anonymousList){
     if(anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymousList.length; i++) {
+        for (i = 0; i < anonymousList.length; i++) {
             retArray.push(getCustomerObject(anonymousList[i]));
         }
         return retArray;
-    }else{
+    }else
         return null;
-    }
 }
 
 class Appointment {
@@ -84,23 +79,21 @@ class Appointment {
 }
 
 function getAppointmentObject(anonymousObject){
-    if(anonymousObject !== null) {
+    if(anonymousObject !== null)
         return new Appointment(getCustomerObject(anonymousObject.customer), new Date(anonymousObject.date), anonymousObject.time, anonymousObject.productCategory, anonymousObject.comment);
-    }else{
+    else
         return null;
-    }
 }
 
 function getAppointmentObjectArray(anonymousList){
     if(anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymousList.length; i++) {
+        for (i = 0; i < anonymousList.length; i++) {
             retArray.push(getAppointmentObject(anonymousList[i]));
         }
         return retArray;
-    }else{
+    }else
         return null;
-    }
 }
 
 class CustomerReview {
@@ -114,23 +107,21 @@ class CustomerReview {
 }
 
 function getCustomerReviewObject(anonymousObject){
-    if(anonymousObject !== null) {
+    if(anonymousObject !== null)
         return new CustomerReview(anonymousObject.title, new Date(anonymousObject.dateTime), getCustomerObject(anonymousObject.customer), anonymousObject.rating, anonymousObject.content);
-    }else{
+    else
         return null;
-    }
 }
 
 function getCustomerReviewObjectArray(anonymousList) {
     if (anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymousList.length; i++) {
+        for (i = 0; i < anonymousList.length; i++) {
             retArray.push(getCustomerReviewObject(anonymousList[i]));
         }
         return retArray;
-    }else{
+    }else
         return null;
-    }
 }
 
 class Lead extends User{
@@ -141,23 +132,21 @@ class Lead extends User{
 }
 
 function getLeadObject(anonymousObject){
-    if(anonymousObject !== null) {
+    if(anonymousObject !== null)
         return new Lead(anonymousObject.firstname, anonymousObject.lastname, anonymousObject.email, new Date(anonymousObject.signedTime));
-    }else{
+    else
         return null;
-    }
 }
 
 function getLeadObjectArray(anonymousList){
     if(anonymousList !== null) {
         var retArray = [];
-        for (var i = 0; i < anonymousList.length; i++) {
+        for (i = 0; i < anonymousList.length; i++) {
             retArray.push(getLeadObject(anonymousList[i]));
         }
         return retArray;
-    }else{
+    }else
         return null;
-    }
 }
 
 class OpeningHour {

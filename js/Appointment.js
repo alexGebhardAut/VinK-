@@ -102,8 +102,8 @@ function btnCreateAppointment() {
 //the a loop goes through the array and checks if all results are correct and return the overall result
 function isCustomerInputValid(date, comment, product, time){
     var checkArray = [  isAptDateValid(date), isDropDownChoiceValid(product), isDropDownChoiceValid(time), isCommentValid(comment)];
-    for(var i = 0; i<checkArray.length; i++){
-        if(checkArray[i] === false)
+    for(i = 0; i<checkArray.length; i++){
+        if(!checkArray[i])
             return false;
     }
     return true;

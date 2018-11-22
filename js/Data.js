@@ -347,26 +347,21 @@ function getGeneratedReviewData(){
     ];
 }
 
-if(localStorage.getItem("customerData")===null){
+if(localStorage.getItem("customerData") === null)
     localStorage.setItem("customerData",JSON.stringify(getGeneratedCustomerData()));
-}
 
-if(localStorage.getItem("appointmentData")===null){
+if(localStorage.getItem("appointmentData") === null)
     localStorage.setItem("appointmentData",JSON.stringify(getGeneratedAppointmentData()));
-}
 
-if(localStorage.getItem("leadDate")===null){
+if(localStorage.getItem("leadDate") === null)
     localStorage.setItem("leadDate",JSON.stringify(getGeneratedLeadData()));
-}
 
-if(localStorage.getItem("reviewData")===null){
+if(localStorage.getItem("reviewData") === null)
     localStorage.setItem("reviewData",JSON.stringify(getGeneratedReviewData()));
-}
 
 window.onload = function(){
-    if(document.cookie.length === 0){
+    if(document.cookie.length === 0)
         localStorage.removeItem("customer");
-    }
 }
 
 
