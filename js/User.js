@@ -67,6 +67,7 @@ function btnSignUpUser() {
    for example 5 hours later, he/she will be still logged in. If the user visits the website 2 days later, the cookie doesn't exist anymore, the user has to log in again.
    The functionality of this is implemented in the window.onload function in the Data.js file.
 */
+
 function btnLoginUser() {
     var fields = [document.getElementById("emailLogin"), document.getElementById("passwordLogin")];
     if (fields[0].value.length === 0 || fields[1].value.length === 0)
